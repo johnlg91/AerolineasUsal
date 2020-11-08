@@ -1,0 +1,4 @@
+todo crear el factory, done
+todo pasar a properties
+todo cambiar los atributos dentro de los models, en vez de guardar los ID guardar los objetos
+todo implementar los metods create en los JDBC
