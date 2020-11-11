@@ -6,8 +6,12 @@ public class Provincia {
   private int idProvincia;
   private String nombreProvincia;
 
-  public Provincia(int id, String nombre) {
-    idProvincia = id;
+  public Provincia(int idProvincia, String nombreProvincia) {
+    this.idProvincia = idProvincia;
+    this.nombreProvincia = nombreProvincia;
+  }
+
+  public Provincia(String nombre) {
     nombreProvincia = nombre;
   }
 
@@ -29,4 +33,12 @@ public class Provincia {
     this.nombreProvincia = nombreProvincia;
   }
 
+
+  @Override
+  public String toString() {
+    return "Provincia{" +
+            "idProvincia=" + idProvincia +
+            ", nombreProvincia='" + nombreProvincia + '\'' +
+            '}';
+  }
 }

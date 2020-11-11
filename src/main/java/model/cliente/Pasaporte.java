@@ -1,6 +1,10 @@
 package model.cliente;
 
 
+import model.direccion.Pais;
+
+import java.sql.Date;
+
 public class Pasaporte {
 
   private int idPasaportes;
@@ -8,8 +12,16 @@ public class Pasaporte {
   private String autoridadEmision;
   private java.sql.Date fechaEmision;
   private java.sql.Date fechaVencimiento;
-  private String idPais;
+  private Pais pais;
 
+  public Pasaporte(int idPasaportes, int nroPasaporte, String autoridadEmision, Date fechaEmision, Date fechaVencimiento, Pais pais) {
+    this.idPasaportes = idPasaportes;
+    this.nroPasaporte = nroPasaporte;
+    this.autoridadEmision = autoridadEmision;
+    this.fechaEmision = fechaEmision;
+    this.fechaVencimiento = fechaVencimiento;
+    this.pais = pais;
+  }
 
   public int getIdPasaportes() {
     return idPasaportes;
@@ -56,12 +68,11 @@ public class Pasaporte {
   }
 
 
-  public String getIdPais() {
-    return idPais;
+  public Pais getPais() {
+    return pais;
   }
 
-  public void setIdPais(String idPais) {
-    this.idPais = idPais;
+  public void setPais(Pais pais) {
+    this.pais = pais;
   }
-
 }

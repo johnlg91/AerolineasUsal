@@ -8,8 +8,15 @@ public class Pais {
     private String nombrePais;
     private Integer codigoTelefono;
 
+
     public Pais(int idPais, String codigoPais, String nombrePais, Integer codigoTelefono) {
         this.idPais = idPais;
+        this.codigoPais = codigoPais;
+        this.nombrePais = nombrePais;
+        this.codigoTelefono = codigoTelefono;
+    }
+
+    public Pais(String codigoPais, String nombrePais, Integer codigoTelefono) {
         this.codigoPais = codigoPais;
         this.nombrePais = nombrePais;
         this.codigoTelefono = codigoTelefono;
@@ -23,6 +30,9 @@ public class Pais {
         this.idPais = idPais;
     }
 
+    public Integer getCodigoTelefono() {
+        return codigoTelefono;
+    }
 
     public String getNombrePais() {
         return nombrePais;

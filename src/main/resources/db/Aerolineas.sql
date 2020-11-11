@@ -85,7 +85,7 @@ create unique index pasajero_frecuente_id_pasajero_frecuente_uindex
 
 create table pasaportes
 (
-    id_pasaportes     serial     not null
+    id_pasaporte     serial     not null
         primary key,
     nro_pasaporte     integer    not null,
     autoridad_emision varchar(50),
@@ -97,11 +97,11 @@ create table pasaportes
 
 
 create unique index pasaportes_id_pasaportes_uindex
-    on pasaportes (id_pasaportes);
+    on pasaportes (id_pasaporte);
 
 create table telefonos
 (
-    id_telefonos serial not null
+    id_telefono serial not null
         primary key,
     personal     varchar(15),
     celular      varchar(15),
@@ -110,7 +110,7 @@ create table telefonos
 
 
 create unique index telefonos_id_telefonos_uindex
-    on telefonos (id_telefonos);
+    on telefonos (id_telefono);
 
 create table direcciones
 (

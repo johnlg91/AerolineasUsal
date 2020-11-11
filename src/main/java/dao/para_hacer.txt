@@ -1,4 +1,8 @@
-todo crear el factory, done
+todo crear el factory, DONE
+todo implementar los Jdbc en direcciones, DONE
+todo implementar los Jdbc en cliente
+todo implementar los Jdbc en aerolinea
+todo crear un contructor en cada modelo con y sin ID
 todo pasar a properties
 todo cambiar los atributos dentro de los models, en vez de guardar los ID guardar los objetos
 todo implementar los metods create en los JDBC

@@ -1,6 +1,10 @@
 package model.cliente;
 
 
+import model.direccion.Direccion;
+
+import java.sql.Date;
+
 public class Cliente {
 
   private int idCliente;
@@ -10,11 +14,37 @@ public class Cliente {
   private int cuitCuil;
   private java.sql.Date fechaNacimiento;
   private String email;
-  private int idDireccion;
-  private int idTelefono;
-  private int idPasaporte;
-  private int idPasajeroFrecuente;
+  private Direccion direccion;
+  private Telefono telefono;
+  private Pasaporte pasaporte;
+  private PasajeroFrecuente pasajeroFrecuente;
 
+  public Cliente(int idCliente, String nombre, String apellido, int dni, int cuitCuil, Date fechaNacimiento, String email, Direccion direccion, Telefono telefono, Pasaporte pasaporte, PasajeroFrecuente pasajeroFrecuente) {
+    this.idCliente = idCliente;
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.dni = dni;
+    this.cuitCuil = cuitCuil;
+    this.fechaNacimiento = fechaNacimiento;
+    this.email = email;
+    this.direccion = direccion;
+    this.telefono = telefono;
+    this.pasaporte = pasaporte;
+    this.pasajeroFrecuente = pasajeroFrecuente;
+  }
+
+  public Cliente(String nombre, String apellido, int dni, int cuitCuil, Date fechaNacimiento, String email, Direccion direccion, Telefono telefono, Pasaporte pasaporte, PasajeroFrecuente pasajeroFrecuente) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.dni = dni;
+    this.cuitCuil = cuitCuil;
+    this.fechaNacimiento = fechaNacimiento;
+    this.email = email;
+    this.direccion = direccion;
+    this.telefono = telefono;
+    this.pasaporte = pasaporte;
+    this.pasajeroFrecuente = pasajeroFrecuente;
+  }
 
   public int getIdCliente() {
     return idCliente;
@@ -79,39 +109,35 @@ public class Cliente {
   }
 
 
-  public int getIdDireccion() {
-    return idDireccion;
+  public Direccion getDireccion() {
+    return direccion;
   }
 
-  public void setIdDireccion(int idDireccion) {
-    this.idDireccion = idDireccion;
+  public void setDireccion(Direccion direccion) {
+    this.direccion = direccion;
   }
 
-
-  public int getIdTelefono() {
-    return idTelefono;
+  public Telefono getTelefono() {
+    return telefono;
   }
 
-  public void setIdTelefono(int idTelefono) {
-    this.idTelefono = idTelefono;
+  public void setTelefono(Telefono telefono) {
+    this.telefono = telefono;
   }
 
-
-  public int getIdPasaporte() {
-    return idPasaporte;
+  public Pasaporte getPasaporte() {
+    return pasaporte;
   }
 
-  public void setIdPasaporte(int idPasaporte) {
-    this.idPasaporte = idPasaporte;
+  public void setPasaporte(Pasaporte pasaporte) {
+    this.pasaporte = pasaporte;
   }
 
-
-  public int getIdPasajeroFrecuente() {
-    return idPasajeroFrecuente;
+  public PasajeroFrecuente getPasajeroFrecuente() {
+    return pasajeroFrecuente;
   }
 
-  public void setIdPasajeroFrecuente(int idPasajeroFrecuente) {
-    this.idPasajeroFrecuente = idPasajeroFrecuente;
+  public void setPasajeroFrecuente(PasajeroFrecuente pasajeroFrecuente) {
+    this.pasajeroFrecuente = pasajeroFrecuente;
   }
-
 }

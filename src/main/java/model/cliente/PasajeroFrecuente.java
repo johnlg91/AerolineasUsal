@@ -1,14 +1,30 @@
 package model.cliente;
 
 
+import model.aeropuerto.Aerolinea;
+
 public class PasajeroFrecuente {
 
   private int idPasajeroFrecuente;
   private String alianza;
   private int numero;
   private String categoria;
-  private int idAerolinea;
+  private Aerolinea aerolinea;
 
+  public PasajeroFrecuente(int idPasajeroFrecuente, String alianza, int numero, String categoria, Aerolinea aerolinea) {
+    this.idPasajeroFrecuente = idPasajeroFrecuente;
+    this.alianza = alianza;
+    this.numero = numero;
+    this.categoria = categoria;
+    this.aerolinea = aerolinea;
+  }
+
+  public PasajeroFrecuente(String alianza, int numero, String categoria, Aerolinea aerolinea) {
+    this.alianza = alianza;
+    this.numero = numero;
+    this.categoria = categoria;
+    this.aerolinea = aerolinea;
+  }
 
   public int getIdPasajeroFrecuente() {
     return idPasajeroFrecuente;
@@ -46,12 +62,11 @@ public class PasajeroFrecuente {
   }
 
 
-  public int getIdAerolinea() {
-    return idAerolinea;
+  public Aerolinea getAerolinea() {
+    return aerolinea;
   }
 
-  public void setIdAerolinea(int idAerolinea) {
-    this.idAerolinea = idAerolinea;
+  public void setAerolinea(Aerolinea aerolinea) {
+    this.aerolinea = aerolinea;
   }
-
 }

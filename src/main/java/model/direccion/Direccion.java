@@ -8,10 +8,31 @@ public class Direccion {
   private int altura;
   private String ciudad;
   private int codigoPostal;
-  private String idPais;
-  private int idProvincia;
-  private int provinciaOtro;
+  private Pais pais;
+  private Provincia provincia;
+  private Provincia provinciaOtro;
 
+
+  public Direccion(int idDireccion, String calle, int altura, String ciudad, int codigoPostal, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+    this.idDireccion = idDireccion;
+    this.calle = calle;
+    this.altura = altura;
+    this.ciudad = ciudad;
+    this.codigoPostal = codigoPostal;
+    this.pais = pais;
+    this.provincia = provincia;
+    this.provinciaOtro = provinciaOtro;
+  }
+
+  public Direccion(String calle, int altura, String ciudad, int codigoPostal, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+    this.calle = calle;
+    this.altura = altura;
+    this.ciudad = ciudad;
+    this.codigoPostal = codigoPostal;
+    this.pais = pais;
+    this.provincia = provincia;
+    this.provinciaOtro = provinciaOtro;
+  }
 
   public int getIdDireccion() {
     return idDireccion;
@@ -58,30 +79,27 @@ public class Direccion {
   }
 
 
-  public String getIdPais() {
-    return idPais;
+  public Pais getPais() {
+    return pais;
   }
 
-  public void setIdPais(String idPais) {
-    this.idPais = idPais;
+  public void setPais(Pais pais) {
+    this.pais = pais;
   }
 
-
-  public int getIdProvincia() {
-    return idProvincia;
+  public Provincia getProvincia() {
+    return provincia;
   }
 
-  public void setIdProvincia(int idProvincia) {
-    this.idProvincia = idProvincia;
+  public void setProvincia(Provincia provincia) {
+    this.provincia = provincia;
   }
 
-
-  public int getProvinciaOtro() {
+  public Provincia getProvinciaOtro() {
     return provinciaOtro;
   }
 
-  public void setProvinciaOtro(int provinciaOtro) {
+  public void setProvinciaOtro(Provincia provinciaOtro) {
     this.provinciaOtro = provinciaOtro;
   }
-
 }

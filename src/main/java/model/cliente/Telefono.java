@@ -9,6 +9,13 @@ public class Telefono {
   private String laboral;
 
 
+  public Telefono(int idTelefonos, String personal, String celular, String laboral) {
+    this.idTelefonos = idTelefonos;
+    this.personal = personal;
+    this.celular = celular;
+    this.laboral = laboral;
+  }
+
   public int getIdTelefonos() {
     return idTelefonos;
   }

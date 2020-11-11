@@ -1,7 +1,4 @@
-package dao;
-
-import dao.interfaces.Dao;
-import dao.jdbc.JdbcDao;
+package dao.jdbc;
 
 import java.io.Closeable;
 import java.sql.Connection;
@@ -32,6 +29,9 @@ public class JdbcDaoFactory implements Closeable {
         }
     }
 
+    public Connection getConnection() {
+        return connection;
+    }
 
     /**
      * Busca el DAO de la clase especificada
@@ -45,7 +45,7 @@ public class JdbcDaoFactory implements Closeable {
     public <T> T getDao(Class<T> daoClass) {
         return (T) daos.computeIfAbsent(daoClass.getName(), s -> {
             try {
-                return daoClass.getConstructor(Connection.class).newInstance(connection);
+                return daoClass.getConstructor(JdbcDaoFactory.class).newInstance(this);
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);
@@ -67,4 +67,6 @@ public class JdbcDaoFactory implements Closeable {
             throw new RuntimeException(e);
         }
     }
+
+
 }

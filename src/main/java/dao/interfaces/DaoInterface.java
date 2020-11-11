@@ -6,11 +6,12 @@ import java.util.List;
  * INTERFAZ GENERAL PARA Dao EN DB
  */
 
-public interface Dao<T>{
+public interface DaoInterface<T>{
 
 	boolean insert(T element);
-	boolean modify(int id);
+	boolean update(int id, T element);
 	boolean delete(int id);
+
 	T get(int id);
 	List<T> getAll();
 	
