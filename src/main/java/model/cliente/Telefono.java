@@ -16,6 +16,12 @@ public class Telefono {
     this.laboral = laboral;
   }
 
+  public Telefono(String personal, String celular, String laboral) {
+    this.personal = personal;
+    this.celular = celular;
+    this.laboral = laboral;
+  }
+
   public int getIdTelefonos() {
     return idTelefonos;
   }

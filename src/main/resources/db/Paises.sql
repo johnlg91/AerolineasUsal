@@ -1,3 +1,5 @@
+SET NAMES 'utf8';
+
 INSERT INTO aerolineas.paises(codigo_pais, nombre_pais, codigo_telefono)
 VALUES ('AD', 'Andorra', 376),
        ('AE', 'Emiratos Árabes Unidos', 971),

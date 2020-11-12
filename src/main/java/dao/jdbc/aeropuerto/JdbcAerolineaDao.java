@@ -5,7 +5,6 @@ import dao.jdbc.AbstractJdbcDao;
 import dao.jdbc.JdbcDaoFactory;
 import model.aeropuerto.Aerolinea;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,39 +16,47 @@ public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements Aero
         super(factory);
     }
 
-    @Override
-    protected void setFields(PreparedStatement statement, Aerolinea entity) throws SQLException {
-
-    }
-
-    @Override
-    protected Aerolinea create(ResultSet rs) throws SQLException {
-        return null;
-    }
-
 
     @Override
     public boolean insert(Aerolinea element) {
-        return false;
+        int id = insert("INSERT INTO aerolineas(nombre_aerolinea, alianza)" +
+                " VALUES (?, ?)", element);
+        element.setIdAerolinea(id);
+        return id > 0;
     }
 
     @Override
     public boolean update(int id, Aerolinea aerolinea) {
-        return false;
+        return update("UPDATE aerolineas " +
+                "SET nombre_aerolinea = ?," +
+                "alianza = ? WHERE id_aerolinea = ?", aerolinea, id) > 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return delete("DELETE FROM aerolineas WHERE id_aerolinea = " + id, id);
     }
 
     @Override
     public Aerolinea get(int id) {
-        return null;
+        return getOne("SELECT * FROM aerolineas WHERE id_aerolinea = " + id);
     }
 
     @Override
     public List<Aerolinea> getAll() {
-        return null;
+        return list("SELECT * FROM aerolineas");
+    }
+
+    @Override
+    protected void setFields(PreparedStatement statement, Aerolinea entity) throws SQLException {
+        statement.setString(1, entity.getNombreAerolinea());
+        statement.setString(2, entity.getAlianza());
+    }
+
+    @Override
+    protected Aerolinea create(ResultSet rs) throws SQLException {
+        return new Aerolinea(rs.getInt("id_aerolinea"),
+                rs.getString("nombre_aerolinea"),
+                rs.getString("a;ianza"));
     }
 }

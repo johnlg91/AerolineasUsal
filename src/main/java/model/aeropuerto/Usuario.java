@@ -9,6 +9,19 @@ public class Usuario {
   private String perfil;
 
 
+  public Usuario(int idUsuarios, String nombreUsuario, String clave, String perfil) {
+    this.idUsuarios = idUsuarios;
+    this.nombreUsuario = nombreUsuario;
+    this.clave = clave;
+    this.perfil = perfil;
+  }
+
+  public Usuario(String nombreUsuario, String clave, String perfil) {
+    this.nombreUsuario = nombreUsuario;
+    this.clave = clave;
+    this.perfil = perfil;
+  }
+
   public int getIdUsuarios() {
     return idUsuarios;
   }

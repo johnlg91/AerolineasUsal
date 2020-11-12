@@ -3,26 +3,37 @@ package model.aeropuerto;
 
 public class Aerolinea {
 
-  private int idAerolineas;
-  private String nombreAerolineas;
+  private int idAerolinea;
+  private String nombreAerolinea;
   private String alianza;
 
 
-  public int getIdAerolineas() {
-    return idAerolineas;
+  public Aerolinea(int idAerolinea, String nombreAerolinea, String alianza) {
+    this.idAerolinea = idAerolinea;
+    this.nombreAerolinea = nombreAerolinea;
+    this.alianza = alianza;
   }
 
-  public void setIdAerolineas(int idAerolineas) {
-    this.idAerolineas = idAerolineas;
+  public Aerolinea(String nombreAerolinea, String alianza) {
+    this.nombreAerolinea = nombreAerolinea;
+    this.alianza = alianza;
+  }
+
+  public int getIdAerolinea() {
+    return idAerolinea;
+  }
+
+  public void setIdAerolinea(int idAerolinea) {
+    this.idAerolinea = idAerolinea;
   }
 
 
-  public String getNombreAerolineas() {
-    return nombreAerolineas;
+  public String getNombreAerolinea() {
+    return nombreAerolinea;
   }
 
-  public void setNombreAerolineas(String nombreAerolineas) {
-    this.nombreAerolineas = nombreAerolineas;
+  public void setNombreAerolinea(String nombreAerolinea) {
+    this.nombreAerolinea = nombreAerolinea;
   }
 
 

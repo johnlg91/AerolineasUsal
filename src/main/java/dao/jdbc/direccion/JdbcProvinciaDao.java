@@ -21,7 +21,7 @@ public class JdbcProvinciaDao extends AbstractJdbcDao<Provincia> implements Prov
     public boolean insert(Provincia provincia) {
         int id = insert("INSERT INTO provincias(nombre_provincia) VALUES (?)", provincia);
         provincia.setIdProvincia(id);
-        return true;
+        return id > 0;
     }
 
     @Override
@@ -38,12 +38,12 @@ public class JdbcProvinciaDao extends AbstractJdbcDao<Provincia> implements Prov
 
     @Override
     public Provincia get(int id) {
-        return getOne("select * from provincias where id_provincia = " + id);
+        return getOne("SELECT * FROM provincias WHERE id_provincia = " + id);
     }
 
     @Override
     public List<Provincia> getAll() {
-        return list("select * from provincias");
+        return list("SELECT * FROM provincias");
     }
 
     @Override

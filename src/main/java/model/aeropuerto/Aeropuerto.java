@@ -1,15 +1,34 @@
 package model.aeropuerto;
 
 
+import model.direccion.Pais;
+import model.direccion.Provincia;
+
 public class Aeropuerto {
 
   private int idAeropuerto;
   private String codigoAeropuerto;
   private String ciudad;
-  private String idPais;
-  private int idProvincia;
-  private String provinciaOtro;
+  private Pais pais;
+  private Provincia provincia;
+  private Provincia provinciaOtro;
 
+  public Aeropuerto(int idAeropuerto, String codigoAeropuerto, String ciudad, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+    this.idAeropuerto = idAeropuerto;
+    this.codigoAeropuerto = codigoAeropuerto;
+    this.ciudad = ciudad;
+    this.pais = pais;
+    this.provincia = provincia;
+    this.provinciaOtro = provinciaOtro;
+  }
+
+  public Aeropuerto(String codigoAeropuerto, String ciudad, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+    this.codigoAeropuerto = codigoAeropuerto;
+    this.ciudad = ciudad;
+    this.pais = pais;
+    this.provincia = provincia;
+    this.provinciaOtro = provinciaOtro;
+  }
 
   public int getIdAeropuerto() {
     return idAeropuerto;
@@ -37,31 +56,27 @@ public class Aeropuerto {
     this.ciudad = ciudad;
   }
 
-
-  public String getIdPais() {
-    return idPais;
+  public Pais getPais() {
+    return pais;
   }
 
-  public void setIdPais(String idPais) {
-    this.idPais = idPais;
+  public void setPais(Pais pais) {
+    this.pais = pais;
   }
 
-
-  public int getIdProvincia() {
-    return idProvincia;
+  public Provincia getProvincia() {
+    return provincia;
   }
 
-  public void setIdProvincia(int idProvincia) {
-    this.idProvincia = idProvincia;
+  public void setProvincia(Provincia provincia) {
+    this.provincia = provincia;
   }
 
-
-  public String getProvinciaOtro() {
+  public Provincia getProvinciaOtro() {
     return provinciaOtro;
   }
 
-  public void setProvinciaOtro(String provinciaOtro) {
+  public void setProvinciaOtro(Provincia provinciaOtro) {
     this.provinciaOtro = provinciaOtro;
   }
-
 }

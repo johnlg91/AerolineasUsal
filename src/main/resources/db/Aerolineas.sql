@@ -58,15 +58,15 @@ create table usuarios
 
 create table aerolineas
 (
-    id_aerolineas     serial      not null
+    id_aerolinea     serial      not null
         primary key,
-    nombre_aerolineas varchar(15) not null,
+    nombre_aerolinea varchar(15) not null,
     alianza           varchar(15)
 );
 
 
 create unique index aerolineas_id_aerolineas_uindex
-    on aerolineas (id_aerolineas);
+    on aerolineas (id_aerolinea);
 
 create table pasajeros_frecuentes
 (
