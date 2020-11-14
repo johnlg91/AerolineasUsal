@@ -18,12 +18,21 @@ public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoI
 
     @Override
     public boolean insert(Pasaporte element) {
-        return false;
+        int id = insert("INSERT INTO pasaportes(nro_pasaporte, autoridad_emision, fecha_emision, fecha_vencimiento, id_pais)" +
+                " VALUES (?, ?, ?, ?, ?)", element);
+        element.setIdPasaportes(id);
+        return id >= 0;
     }
 
     @Override
     public boolean update(int id, Pasaporte element) {
-        return false;
+        return update("UPDATE pasaportes" +
+                " SET id_pasaporte = ?, " +
+                "nro_pasaporte = ?," +
+                "autoridad_emision = ?," +
+                "fecha_emision = ?," +
+                "fecha_vencimiento = ?," +
+                "id_pais = ?", element, id) > 0;
     }
 
     @Override

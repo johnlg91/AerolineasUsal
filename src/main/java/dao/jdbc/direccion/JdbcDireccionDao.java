@@ -56,11 +56,11 @@ public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements Dire
 
     @Override
     protected Direccion create(ResultSet rs) throws SQLException {
+        JdbcPaisDao paisDao = factory.getDao(JdbcPaisDao.class);
+        JdbcProvinciaDao provinciaDao = factory.getDao(JdbcProvinciaDao.class);
         int idPais = rs.getInt("id_pais");
         int idProvincia = rs.getInt("id_provincia");
         int idProvinciaOtro = rs.getInt("provincia_otro");
-        JdbcPaisDao paisDao = factory.getDao(JdbcPaisDao.class);
-        JdbcProvinciaDao provinciaDao = factory.getDao(JdbcProvinciaDao.class);
         return new Direccion(rs.getInt("id_direccion"),
                 rs.getString("calle"),
                 rs.getInt("altura"),

@@ -22,7 +22,7 @@ public class JdbcTelefonoDao extends AbstractJdbcDao<Telefono> implements DaoInt
         int id = insert("INSERT INTO telefonos(personal, celular, laboral)" +
                 " VALUES (?, ?, ?)", element);
         element.setIdTelefonos(id);
-        return true;
+        return id >= 0;
     }
 
     @Override
