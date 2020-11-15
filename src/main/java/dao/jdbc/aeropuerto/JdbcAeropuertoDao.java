@@ -3,6 +3,8 @@ package dao.jdbc.aeropuerto;
 import dao.interfaces.aeropuerto.AeropuertoDAO;
 import dao.jdbc.AbstractJdbcDao;
 import dao.jdbc.JdbcDaoFactory;
+import dao.jdbc.direccion.JdbcPaisDao;
+import dao.jdbc.direccion.JdbcProvinciaDao;
 import model.aeropuerto.Aeropuerto;
 
 import java.sql.PreparedStatement;
@@ -17,36 +19,59 @@ public class JdbcAeropuertoDao extends AbstractJdbcDao<Aeropuerto> implements Ae
 
     @Override
     public boolean insert(Aeropuerto element) {
-        return false;
+        int id = insert("INSERT INTO aeropuertos(codigo_aeropuerto, ciudad, id_pais, id_provincia, provincia_otro)" +
+                " VALUES(?,?,?,?,?)", element);
+        element.setIdAeropuerto(id);
+        return true;
     }
 
     @Override
     public boolean update(int id, Aeropuerto element) {
-        return false;
+        return update("UPDATE aeropuertos" +
+                " SET codigo_aeropuerto = ?," +
+                "ciudad = ?," +
+                "id_pais = ?," +
+                "id_provincia = ?," +
+                "provincia_otro = ?" +
+                "WHERE id_aeropuerto = ?", element, id) > 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return delete("DELETE FROM aeropuertos WHERE id_aeropuerto = ?", id);
     }
 
     @Override
     public Aeropuerto get(int id) {
-        return null;
+        return getOne("SELECT * FROM aeropuertos WHERE id_aeropuerto = " + id);
     }
 
     @Override
     public List<Aeropuerto> getAll() {
-        return null;
+        return list("SELECT * FROM aeropuertos");
     }
 
     @Override
     protected void setFields(PreparedStatement statement, Aeropuerto entity) throws SQLException {
-
+        statement.setString(1, entity.getCodigoAeropuerto());
+        statement.setString(2, entity.getCiudad());
+        statement.setInt(3, entity.getPais().getIdPais());
+        statement.setInt(4, entity.getProvincia().getIdProvincia());
+        //todo revisar si funciona
+        statement.setString(5, entity.getProvinciaOtro());
     }
 
     @Override
     protected Aeropuerto create(ResultSet rs) throws SQLException {
-        return null;
+        JdbcProvinciaDao provinciaDao = factory.getDao(JdbcProvinciaDao.class);
+        JdbcPaisDao paisDao = factory.getDao(JdbcPaisDao.class);
+        return new Aeropuerto(
+                rs.getInt("id_aeropuerto"),
+                rs.getString("codigo_aeropuerto"),
+                rs.getString("ciudad"),
+                paisDao.get(rs.getInt("id_pais")),
+                provinciaDao.get(rs.getInt("id_provincia")),
+                rs.getString("provincia_otro")
+        );
     }
 }

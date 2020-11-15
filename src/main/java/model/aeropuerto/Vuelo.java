@@ -1,6 +1,8 @@
 package model.aeropuerto;
 
 
+import java.sql.Timestamp;
+
 public class Vuelo {
 
   private int idVuelo;
@@ -9,10 +11,32 @@ public class Vuelo {
   private java.sql.Timestamp fecHsSalida;
   private java.sql.Timestamp fecHsLlegada;
   private int tiempoVuelo;
-  private int idAerolinea;
-  private int idAeropuertoSalida;
-  private int idAeropuertoLlegada;
+  private Aerolinea aerolinea;
+  private Aeropuerto aeropuertoSalida;
+  private Aeropuerto aeropuertoLlegada;
 
+  public Vuelo(int idVuelo, String nroVuelo, int cantAsientos, Timestamp fecHsSalida, Timestamp fecHsLlegada, int tiempoVuelo, Aerolinea aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada) {
+    this.idVuelo = idVuelo;
+    this.nroVuelo = nroVuelo;
+    this.cantAsientos = cantAsientos;
+    this.fecHsSalida = fecHsSalida;
+    this.fecHsLlegada = fecHsLlegada;
+    this.tiempoVuelo = tiempoVuelo;
+    this.aerolinea = aerolinea;
+    this.aeropuertoSalida = aeropuertoSalida;
+    this.aeropuertoLlegada = aeropuertoLlegada;
+  }
+
+  public Vuelo(String nroVuelo, int cantAsientos, Timestamp fecHsSalida, Timestamp fecHsLlegada, int tiempoVuelo, Aerolinea aerolinea, Aeropuerto aeropuertoSalida, Aeropuerto aeropuertoLlegada) {
+    this.nroVuelo = nroVuelo;
+    this.cantAsientos = cantAsientos;
+    this.fecHsSalida = fecHsSalida;
+    this.fecHsLlegada = fecHsLlegada;
+    this.tiempoVuelo = tiempoVuelo;
+    this.aerolinea = aerolinea;
+    this.aeropuertoSalida = aeropuertoSalida;
+    this.aeropuertoLlegada = aeropuertoLlegada;
+  }
 
   public int getIdVuelo() {
     return idVuelo;
@@ -67,31 +91,27 @@ public class Vuelo {
     this.tiempoVuelo = tiempoVuelo;
   }
 
-
-  public int getIdAerolinea() {
-    return idAerolinea;
+  public Aerolinea getAerolinea() {
+    return aerolinea;
   }
 
-  public void setIdAerolinea(int idAerolinea) {
-    this.idAerolinea = idAerolinea;
+  public void setAerolinea(Aerolinea aerolinea) {
+    this.aerolinea = aerolinea;
   }
 
-
-  public int getIdAeropuertoSalida() {
-    return idAeropuertoSalida;
+  public Aeropuerto getAeropuertoSalida() {
+    return aeropuertoSalida;
   }
 
-  public void setIdAeropuertoSalida(int idAeropuertoSalida) {
-    this.idAeropuertoSalida = idAeropuertoSalida;
+  public void setAeropuertoSalida(Aeropuerto aeropuertoSalida) {
+    this.aeropuertoSalida = aeropuertoSalida;
   }
 
-
-  public int getIdAeropuertoLlegada() {
-    return idAeropuertoLlegada;
+  public Aeropuerto getAeropuertoLlegada() {
+    return aeropuertoLlegada;
   }
 
-  public void setIdAeropuertoLlegada(int idAeropuertoLlegada) {
-    this.idAeropuertoLlegada = idAeropuertoLlegada;
+  public void setAeropuertoLlegada(Aeropuerto aeropuertoLlegada) {
+    this.aeropuertoLlegada = aeropuertoLlegada;
   }
-
 }

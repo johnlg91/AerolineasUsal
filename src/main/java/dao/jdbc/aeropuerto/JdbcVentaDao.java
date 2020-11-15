@@ -1,53 +1,76 @@
 package dao.jdbc.aeropuerto;
 
-import dao.interfaces.aeropuerto.VueloDAO;
+import dao.interfaces.aeropuerto.VentaDAO;
 import dao.jdbc.AbstractJdbcDao;
 import dao.jdbc.JdbcDaoFactory;
+import dao.jdbc.cliente.JdbcClienteDao;
 import model.aeropuerto.Venta;
-import model.aeropuerto.Vuelo;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class JdbcVentaDao extends AbstractJdbcDao<Venta>  implements VueloDAO {
+public class JdbcVentaDao extends AbstractJdbcDao<Venta> implements VentaDAO {
     protected JdbcVentaDao(JdbcDaoFactory factory) {
         super(factory);
     }
 
     @Override
-    public boolean insert(Vuelo element) {
+    public boolean insert(Venta element) {
+        int id = insert("INSERT INTO ventas(fec_hs_venta, forma_pago, id_cliente, id_vuelo, id_aerolinea) " +
+                "VALUES(?,?,?,?,?) ", element);
+        element.setIdVentas(id);
         return false;
     }
 
     @Override
-    public boolean update(int id, Vuelo element) {
-        return false;
+    public boolean update(int id, Venta element) {
+        return update("UPDATE ventas  " +
+                "SET fec_hs_venta = ?," +
+                "forma_pago = ?," +
+                "id_cliente = ?," +
+                "id_vuelo = ?," +
+                "id_aerolinea = ?" +
+                "WHERE id_ventas = ?", element, id) > 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return delete("DELETE FROM ventas WHERE id_ventas = ?", id);
     }
 
     @Override
-    public Vuelo get(int id) {
-        return null;
+    public Venta get(int id) {
+        return getOne("SELECT * FROM ventas WHERE id_ventas = " + id);
     }
 
     @Override
-    public List<Vuelo> getAll() {
-        return null;
+    public List<Venta> getAll() {
+        return list("SELECT * FROM ventas");
     }
 
     @Override
     protected void setFields(PreparedStatement statement, Venta entity) throws SQLException {
-
+        statement.setTimestamp(1, entity.getFecHsVenta());
+        statement.setString(2, entity.getFormaPago());
+        statement.setInt(3, entity.getCliente().getIdCliente());
+        statement.setInt(3, entity.getVuelo().getIdVuelo());
+        statement.setInt(3, entity.getAerolinea().getIdAerolinea());
     }
 
     @Override
     protected Venta create(ResultSet rs) throws SQLException {
-        return null;
+        JdbcClienteDao clienteDao = factory.getDao(JdbcClienteDao.class);
+        JdbcVueloDao vueloDao = factory.getDao(JdbcVueloDao.class);
+        JdbcAerolineaDao aerolineaDao = factory.getDao(JdbcAerolineaDao.class);
+        return new Venta(
+                rs.getInt("id_ventas"),
+                rs.getTimestamp("fec_hs_venta"),
+                rs.getString("forma_pago"),
+                clienteDao.get(rs.getInt("id_cliente")),
+                vueloDao.get(rs.getInt("id_vuelo")),
+                aerolineaDao.get(rs.getInt("id_aerolinea"))
+        );
     }
 }

@@ -11,9 +11,9 @@ public class Aeropuerto {
   private String ciudad;
   private Pais pais;
   private Provincia provincia;
-  private Provincia provinciaOtro;
+  private String provinciaOtro;
 
-  public Aeropuerto(int idAeropuerto, String codigoAeropuerto, String ciudad, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+  public Aeropuerto(int idAeropuerto, String codigoAeropuerto, String ciudad, Pais pais, Provincia provincia, String provinciaOtro) {
     this.idAeropuerto = idAeropuerto;
     this.codigoAeropuerto = codigoAeropuerto;
     this.ciudad = ciudad;
@@ -22,7 +22,7 @@ public class Aeropuerto {
     this.provinciaOtro = provinciaOtro;
   }
 
-  public Aeropuerto(String codigoAeropuerto, String ciudad, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+  public Aeropuerto(String codigoAeropuerto, String ciudad, Pais pais, Provincia provincia, String provinciaOtro) {
     this.codigoAeropuerto = codigoAeropuerto;
     this.ciudad = ciudad;
     this.pais = pais;
@@ -72,11 +72,11 @@ public class Aeropuerto {
     this.provincia = provincia;
   }
 
-  public Provincia getProvinciaOtro() {
+  public String getProvinciaOtro() {
     return provinciaOtro;
   }
 
-  public void setProvinciaOtro(Provincia provinciaOtro) {
+  public void setProvinciaOtro(String provinciaOtro) {
     this.provinciaOtro = provinciaOtro;
   }
 }

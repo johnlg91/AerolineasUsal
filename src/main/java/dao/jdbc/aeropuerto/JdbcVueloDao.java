@@ -18,36 +18,67 @@ public class JdbcVueloDao extends AbstractJdbcDao<Vuelo> implements VueloDAO {
 
     @Override
     public boolean insert(Vuelo element) {
-        return false;
+        int id = insert("INSERT INTO vuelos (nro_vuelo, cant_asientos, fec_hs_salida, fec_hs_llegada, tiempo_vuelo, id_aerolinea, id_aeropuerto_salida, id_aeropuerto_llegada) " +
+                "VALUES (?,?,?,?,?,?,?,?)", element);
+        element.setIdVuelo(id);
+        return id >= 0;
     }
 
     @Override
     public boolean update(int id, Vuelo element) {
-        return false;
+        return update("UPDATE vuelos " +
+                "SET nro_vuelo = ?," +
+                "cant_asientos = ?," +
+                "fec_hs_salida = ?," +
+                "fec_hs_llegada = ?," +
+                "tiempo_vuelo = ?," +
+                "id_aerolinea = ?," +
+                "id_aeropuerto_salida = ?," +
+                "id_aeropuerto_llegada = ? " +
+                "WHERE id_vuelo = ?", element, id) > 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        return delete("DELETE FROM vuelos WHERE id_vuelo = ?", id);
     }
 
     @Override
     public Vuelo get(int id) {
-        return null;
+        return getOne("SELECT * FROM vuelos WHERE id_vuelo = " + id);
     }
 
     @Override
     public List<Vuelo> getAll() {
-        return null;
+        return list("SELECT * FROM vuelos");
     }
 
     @Override
     protected void setFields(PreparedStatement statement, Vuelo entity) throws SQLException {
-
+        statement.setString(1, entity.getNroVuelo());
+        statement.setInt(2, entity.getCantAsientos());
+        statement.setTimestamp(3, entity.getFecHsSalida());
+        statement.setTimestamp(4, entity.getFecHsLlegada());
+        statement.setInt(5, entity.getTiempoVuelo());
+        statement.setInt(6, entity.getAerolinea().getIdAerolinea());
+        statement.setInt(7, entity.getAeropuertoSalida().getIdAeropuerto());
+        statement.setInt(8, entity.getAeropuertoLlegada().getIdAeropuerto());
     }
 
     @Override
     protected Vuelo create(ResultSet rs) throws SQLException {
-        return null;
+        JdbcAerolineaDao aerolineaDao = factory.getDao(JdbcAerolineaDao.class);
+        JdbcAeropuertoDao aeropuertoDao = factory.getDao(JdbcAeropuertoDao.class);
+        return new Vuelo(
+                rs.getInt("id_vuelo"),
+                rs.getString("nro_vuelo"),
+                rs.getInt("cant_asientos"),
+                rs.getTimestamp("fec_hs_salida"),
+                rs.getTimestamp("fec_hs_llegada"),
+                rs.getInt("tiempo_vuelo"),
+                aerolineaDao.get(rs.getInt("id_aerolinea")),
+                aeropuertoDao.get(rs.getInt("id_aeropuerto_salida")),
+                aeropuertoDao.get(rs.getInt("id_aeropuerto_llegada"))
+        );
     }
 }

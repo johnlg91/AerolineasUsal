@@ -3,6 +3,8 @@ todo implementar los Jdbc en direcciones, DONE
 todo crear un contructor en cada modelo con y sin ID, DONE
 todo cambiar los atributos dentro de los models, en vez de guardar los ID guardar los objetos, DONE
 todo implementar los Jdbc en cliente, DONE
-todo implementar los Jdbc en aerolinea
-todo implementar los metods create en los JDBC
-todo pasar a properties
+todo implementar los Jdbc en aerolinea, DONE
+todo pasar a properties, DONE
+todo revisar los provincias_otro, DONE
+todo revisar los provincias_otro en el sql, sigue nesecitando referencia?
+

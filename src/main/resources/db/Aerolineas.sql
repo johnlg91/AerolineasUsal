@@ -38,7 +38,7 @@ create table aeropuertos
         primary key,
     codigo_aeropuerto varchar(3)  not null,
     ciudad            varchar(50) not null,
-    id_pais           varchar(3)  not null
+    id_pais           integer  not null
         references paises,
     id_provincia      integer
         references provincias,

@@ -1,11 +1,12 @@
 package dao.jdbc;
 
-import java.io.Closeable;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 
 /**
@@ -14,18 +15,23 @@ import java.util.Map;
  */
 public class JdbcDaoFactory implements Closeable {
 
-    private final Connection connection;
+    private Connection connection;
     private Map<String, Object> daos = new HashMap<>();
 
-    static final String URL = "jdbc:mysql://localhost:3306/aerolineas";
-    public static final String USER = "root";
-    public static final String PASS = "aerolineas-usal";
 
     public JdbcDaoFactory() {
         try {
-            this.connection = DriverManager.getConnection(URL, USER, PASS);
+            Properties properties = new Properties();
+            InputStream inputStream = new FileInputStream("main/resources/db/Connection.propertiies");
+            properties.load(inputStream);
+            this.connection = DriverManager.getConnection(properties.getProperty("URL"),
+                    properties.getProperty("USER"),
+                    properties.getProperty("PASS"));
         } catch (SQLException ex) {
             throw new RuntimeException("Error connecting to the database", ex);
+        } catch (IOException e) {
+            System.out.println("Connection.properties not found");
+            e.printStackTrace();
         }
     }
 

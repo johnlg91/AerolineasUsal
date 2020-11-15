@@ -60,7 +60,6 @@ public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements Dire
         JdbcProvinciaDao provinciaDao = factory.getDao(JdbcProvinciaDao.class);
         int idPais = rs.getInt("id_pais");
         int idProvincia = rs.getInt("id_provincia");
-        int idProvinciaOtro = rs.getInt("provincia_otro");
         return new Direccion(rs.getInt("id_direccion"),
                 rs.getString("calle"),
                 rs.getInt("altura"),
@@ -68,7 +67,7 @@ public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements Dire
                 rs.getInt("codigo_postal"),
                 paisDao.get(idPais),
                 provinciaDao.get(idProvincia),
-                provinciaDao.get(idProvinciaOtro));
+                rs.getString("provincia_otro"));
     }
 
     @Override
@@ -79,6 +78,6 @@ public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements Dire
         statement.setInt(4, entity.getCodigoPostal());
         statement.setInt(5, entity.getPais().getIdPais());
         statement.setInt(6, entity.getProvincia().getIdProvincia());
-        statement.setInt(7, entity.getProvinciaOtro().getIdProvincia());
+        statement.setString(7, entity.getProvinciaOtro());
     }
 }

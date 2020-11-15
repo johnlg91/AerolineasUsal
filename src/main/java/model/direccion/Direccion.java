@@ -10,10 +10,10 @@ public class Direccion {
   private int codigoPostal;
   private Pais pais;
   private Provincia provincia;
-  private Provincia provinciaOtro;
+  private String provinciaOtro;
 
 
-  public Direccion(int idDireccion, String calle, int altura, String ciudad, int codigoPostal, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+  public Direccion(int idDireccion, String calle, int altura, String ciudad, int codigoPostal, Pais pais, Provincia provincia, String provinciaOtro) {
     this.idDireccion = idDireccion;
     this.calle = calle;
     this.altura = altura;
@@ -24,7 +24,7 @@ public class Direccion {
     this.provinciaOtro = provinciaOtro;
   }
 
-  public Direccion(String calle, int altura, String ciudad, int codigoPostal, Pais pais, Provincia provincia, Provincia provinciaOtro) {
+  public Direccion(String calle, int altura, String ciudad, int codigoPostal, Pais pais, Provincia provincia, String provinciaOtro) {
     this.calle = calle;
     this.altura = altura;
     this.ciudad = ciudad;
@@ -95,11 +95,11 @@ public class Direccion {
     this.provincia = provincia;
   }
 
-  public Provincia getProvinciaOtro() {
+  public String getProvinciaOtro() {
     return provinciaOtro;
   }
 
-  public void setProvinciaOtro(Provincia provinciaOtro) {
+  public void setProvinciaOtro(String provinciaOtro) {
     this.provinciaOtro = provinciaOtro;
   }
 }

@@ -1,15 +1,35 @@
 package model.aeropuerto;
 
 
+import model.cliente.Cliente;
+
+import java.sql.Timestamp;
+
 public class Venta {
 
   private int idVentas;
   private java.sql.Timestamp fecHsVenta;
   private String formaPago;
-  private int idCliente;
-  private int idVuelo;
-  private int idAerolinea;
+  private Cliente cliente;
+  private Vuelo vuelo;
+  private Aerolinea aerolinea;
 
+  public Venta(int idVentas, Timestamp fecHsVenta, String formaPago, Cliente cliente, Vuelo vuelo, Aerolinea aerolinea) {
+    this.idVentas = idVentas;
+    this.fecHsVenta = fecHsVenta;
+    this.formaPago = formaPago;
+    this.cliente = cliente;
+    this.vuelo = vuelo;
+    this.aerolinea = aerolinea;
+  }
+
+  public Venta(Timestamp fecHsVenta, String formaPago, Cliente cliente, Vuelo vuelo, Aerolinea aerolinea) {
+    this.fecHsVenta = fecHsVenta;
+    this.formaPago = formaPago;
+    this.cliente = cliente;
+    this.vuelo = vuelo;
+    this.aerolinea = aerolinea;
+  }
 
   public int getIdVentas() {
     return idVentas;
@@ -37,31 +57,27 @@ public class Venta {
     this.formaPago = formaPago;
   }
 
-
-  public int getIdCliente() {
-    return idCliente;
+  public Cliente getCliente() {
+    return cliente;
   }
 
-  public void setIdCliente(int idCliente) {
-    this.idCliente = idCliente;
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
   }
 
-
-  public int getIdVuelo() {
-    return idVuelo;
+  public Vuelo getVuelo() {
+    return vuelo;
   }
 
-  public void setIdVuelo(int idVuelo) {
-    this.idVuelo = idVuelo;
+  public void setVuelo(Vuelo vuelo) {
+    this.vuelo = vuelo;
   }
 
-
-  public int getIdAerolinea() {
-    return idAerolinea;
+  public Aerolinea getAerolinea() {
+    return aerolinea;
   }
 
-  public void setIdAerolinea(int idAerolinea) {
-    this.idAerolinea = idAerolinea;
+  public void setAerolinea(Aerolinea aerolinea) {
+    this.aerolinea = aerolinea;
   }
-
 }
