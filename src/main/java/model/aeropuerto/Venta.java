@@ -35,7 +35,7 @@ public class Venta {
     return idVentas;
   }
 
-  public void setIdVentas(int idVentas) {
+  public void setIdVenta(int idVentas) {
     this.idVentas = idVentas;
   }
 

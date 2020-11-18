@@ -1,12 +1,19 @@
 package dao.jdbc;
 
-import java.io.*;
+import dao.jdbc.direccion.JdbcProvinciaDao;
+import model.direccion.Provincia;
+
+import java.io.Closeable;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Scanner;
 
 
 /**
@@ -22,12 +29,13 @@ public class JdbcDaoFactory implements Closeable {
     public JdbcDaoFactory() {
         try {
             Properties properties = new Properties();
-            InputStream inputStream = new FileInputStream("/home/fjgoni/Escritorio/Facultad/Programacion Avanzada/AerolineasUsal/src/main/resources/db/Connection.properties");
+            InputStream inputStream = new FileInputStream("src/main/resources/db/Connection.properties");
             properties.load(inputStream);
-            this.connection = DriverManager.getConnection(properties.getProperty("URL"),
+            this.connection = DriverManager.getConnection(
+                    properties.getProperty("URL"),
                     properties.getProperty("USER"),
+                    //todo, agregar al ignore
                     properties.getProperty("PASS"));
-            System.out.println(properties.get("USER"));
         } catch (SQLException ex) {
             throw new RuntimeException("Error connecting to the database", ex);
         } catch (IOException e) {
@@ -58,6 +66,18 @@ public class JdbcDaoFactory implements Closeable {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public void readProvincias() {
+        try (FileInputStream file = new FileInputStream("src/main/resources/db/Provincias.txt")) {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                Provincia p = new Provincia(scanner.nextLine());
+                getDao(JdbcProvinciaDao.class).insert(p);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

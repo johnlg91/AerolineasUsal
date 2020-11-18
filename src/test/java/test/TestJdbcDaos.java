@@ -1,24 +1,18 @@
 package test;
 
+import dao.interfaces.cliente.ClienteDAO;
+import dao.interfaces.cliente.PasajeroFrecuenteDAO;
+import dao.interfaces.direccion.DireccionDao;
+import dao.interfaces.direccion.PaisDao;
+import dao.interfaces.direccion.ProvinciaDao;
 import dao.jdbc.JdbcDaoFactory;
 import dao.jdbc.cliente.JdbcClienteDao;
 import dao.jdbc.cliente.JdbcPasajeroFrecuenteDao;
 import dao.jdbc.cliente.JdbcPasaporteDao;
 import dao.jdbc.cliente.JdbcTelefonoDao;
-
-import java.sql.Date;
-
-import dao.interfaces.cliente.ClienteDAO;
-import dao.interfaces.cliente.PasajeroFrecuenteDAO;
-import dao.interfaces.cliente.PasaporteDAO;
-import dao.interfaces.cliente.TelefonoDAO;
-import dao.interfaces.direccion.DireccionDao;
-import dao.interfaces.direccion.PaisDao;
-import dao.interfaces.direccion.ProvinciaDao;
 import dao.jdbc.direccion.JdbcDireccionDao;
 import dao.jdbc.direccion.JdbcPaisDao;
 import dao.jdbc.direccion.JdbcProvinciaDao;
-import model.aeropuerto.Aerolinea;
 import model.cliente.Cliente;
 import model.cliente.PasajeroFrecuente;
 import model.cliente.Pasaporte;
@@ -26,10 +20,14 @@ import model.cliente.Telefono;
 import model.direccion.Direccion;
 import model.direccion.Pais;
 import model.direccion.Provincia;
+import org.junit.Test;
+
+import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 public class TestJdbcDaos {
-    
+
     public void paisDao() {
         try (JdbcDaoFactory f = new JdbcDaoFactory()) {
             PaisDao paisDao = f.getDao(JdbcPaisDao.class);
@@ -39,7 +37,7 @@ public class TestJdbcDaos {
         }
     }
 
-   
+
     public void provinciaDao() {
         try (JdbcDaoFactory f = new JdbcDaoFactory()) {
             final ProvinciaDao provinciaDao = f.getDao(JdbcProvinciaDao.class);
@@ -48,51 +46,59 @@ public class TestJdbcDaos {
             for (Provincia provincia : provinciaDao.getAll()) {
                 System.out.println(provincia);
             }
-          
+
         }
     }
-    
+
+    //@Test
     public void clienteDao() {
-    	 try (JdbcDaoFactory f = new JdbcDaoFactory()) {
-             final ProvinciaDao provinciaDao = f.getDao(JdbcProvinciaDao.class);
-             Provincia provincia = provinciaDao.get(1);
-             System.out.println(provincia);
-             
-             final PaisDao paisDao = f.getDao(JdbcPaisDao.class);
-             Pais pais = paisDao.get(1);
-             System.out.println(pais);
-             
-             final DireccionDao direccionDao = f.getDao(JdbcDireccionDao.class);
-             Direccion d = direccionDao.get(1);
-             System.out.println(d);
-             
-             final JdbcTelefonoDao telefonoDao = f.getDao(JdbcTelefonoDao.class);
-             Telefono t = telefonoDao.get(1);
-             System.out.println(t);
-             
-             final JdbcPasaporteDao pasaporteDAO = f.getDao(JdbcPasaporteDao.class);
-            Pasaporte pa = pasaporteDAO.get(1);
-            System.out.println(pa);
-            
+        try (JdbcDaoFactory f = new JdbcDaoFactory()) {
+            final ProvinciaDao provinciaDao = f.getDao(JdbcProvinciaDao.class);
+            Provincia provincia = provinciaDao.get(2);
+            System.out.println(provincia);
+
+            final PaisDao paisDao = f.getDao(JdbcPaisDao.class);
+            Pais pais = paisDao.get(1);
+            System.out.println(pais);
+
+            final DireccionDao direccionDao = f.getDao(JdbcDireccionDao.class);
+            Direccion d = direccionDao.get(1);
+            System.out.println(d);
+
+            final JdbcTelefonoDao telefonoDao = f.getDao(JdbcTelefonoDao.class);
+            Telefono t = new Telefono("0000","11111","22222");
+            telefonoDao.insert(t);
+            System.out.println(telefonoDao.get(t.getIdTelefonos()));
+
+            final JdbcPasaporteDao pasaporteDAO = f.getDao(JdbcPasaporteDao.class);
+            Pasaporte pa = new Pasaporte(33333,"jhjhjh", null, null,paisDao.get(1));
+            System.out.println(pa.getIdPasaporte());
+
             final PasajeroFrecuenteDAO pfrecuenteDao = f.getDao(JdbcPasajeroFrecuenteDao.class);
             PasajeroFrecuente pfr = pfrecuenteDao.get(1);
-            
+
             System.out.println(pfr);
-            
+
             final ClienteDAO clienteDao = f.getDao(JdbcClienteDao.class);
             Date date = new java.sql.Date(0);
             // NO INSERTAAAAA
-            Cliente c = new Cliente("ariel", "perez", 111, 111,date ,"aa@aa.com.ar", d, t, pa,pfr);
+            Cliente c = new Cliente("ariel", "perez", 111, 111, date, "aa@aa.com.ar", d, t, pa, pfr);
             System.out.println(c);
             clienteDao.insert(c);
-    	 }
+        }
     }
-    
 
-    
-    public static void main(String[] args) {
-		TestJdbcDaos ts = new TestJdbcDaos();
-		ts.clienteDao();
-	}
+
+//    public static void main(String[] args) {
+//		TestJdbcDaos ts = new TestJdbcDaos();
+//		ts.clienteDao();
+//	}
+
+   // @Test
+    public void provinciasTxt() {
+        try (JdbcDaoFactory factory = new JdbcDaoFactory()) {
+            factory.readProvincias();
+        }
+    }
 
 }

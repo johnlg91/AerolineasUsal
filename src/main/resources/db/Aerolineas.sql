@@ -48,7 +48,7 @@ create table aeropuertos
 
 create table usuarios
 (
-    id_usuarios    serial      not null
+    id_usuario    serial      not null
         primary key,
     nombre_usuario varchar(50) not null,
     clave          varchar(50) not null,
@@ -124,7 +124,7 @@ create table direcciones
         references paises,
     id_provincia   integer
         references provincias,
-    provincia_otro integer
+    provincia_otro varchar(30)
 );
 
 create unique index direcciones_id_direccion_uindex
@@ -162,7 +162,7 @@ create unique index cliente_id_cliente_uindex
 
 create table ventas
 (
-    id_ventas    serial      not null
+    id_venta    serial      not null
         primary key,
     fec_hs_venta timestamp   not null,
     forma_pago   varchar(10) not null,
@@ -176,6 +176,6 @@ create table ventas
 
 
 create unique index ventas_id_ventas_uindex
-    on ventas (id_ventas);
+    on ventas (id_venta);
 
 

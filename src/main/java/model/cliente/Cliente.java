@@ -4,6 +4,9 @@ package model.cliente;
 import model.direccion.Direccion;
 
 import java.sql.Date;
+import java.util.Objects;
+
+import static java.util.Objects.requireNonNull;
 
 public class Cliente {
 
@@ -34,6 +37,8 @@ public class Cliente {
   }
 
   public Cliente(String nombre, String apellido, int dni, int cuitCuil, Date fechaNacimiento, String email, Direccion direccion, Telefono telefono, Pasaporte pasaporte, PasajeroFrecuente pasajeroFrecuente) {
+    requireNonNull(direccion);
+    requireNonNull(telefono);
     this.nombre = nombre;
     this.apellido = apellido;
     this.dni = dni;

@@ -2,6 +2,8 @@ package dao.jdbc;
 
 
 
+import org.intellij.lang.annotations.Language;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,8 @@ public abstract class AbstractJdbcDao<T> {
      * @param entity, un generic, el objeto a insertar
      * @return devuelve el id generado por sql
      */
-    protected int insert(String sql, T entity) {
+
+    protected int insert(/*@Language(value = "SQL")*/ String sql, T entity) {
         try (PreparedStatement statement = getConnection().prepareStatement(sql, RETURN_GENERATED_KEYS)) {
             setFields(statement, entity);
             statement.executeUpdate();
@@ -36,7 +39,7 @@ public abstract class AbstractJdbcDao<T> {
         }
     }
 
-    protected int update( String sql, T entity, int id) {
+    protected int update(/*@Language(value = "SQL")*/ String sql, T entity, int id) {
         try (PreparedStatement statement = getConnection().prepareStatement(sql)) {
             setFields(statement, entity);
             int idPosition = statement.getParameterMetaData().getParameterCount();
@@ -47,7 +50,7 @@ public abstract class AbstractJdbcDao<T> {
         }
     }
 
-    protected boolean delete(String sql, int id) {
+    protected boolean delete(/*@Language(value = "SQL")*/String sql, int id) {
         try (PreparedStatement statement = getConnection().prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.executeUpdate();
@@ -58,7 +61,7 @@ public abstract class AbstractJdbcDao<T> {
     }
 
 
-    protected T getOne(String query) {
+    protected T getOne(/*@Language(value = "SQL")*/String query) {
         try (
                 Statement statement = getConnection().createStatement();
                 ResultSet rs = statement.executeQuery(query)
@@ -70,7 +73,7 @@ public abstract class AbstractJdbcDao<T> {
         }
     }
 
-    protected List<T> list(String query) {
+    protected List<T> list(/*@Language(value = "SQL")*/String query) {
         try (
                 Statement statement = getConnection().createStatement();
                 ResultSet rs = statement.executeQuery(query)

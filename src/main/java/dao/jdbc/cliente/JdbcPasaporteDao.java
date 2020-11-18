@@ -42,7 +42,7 @@ public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoI
 
     @Override
     public Pasaporte get(int id) {
-        return getOne("SELECT * FROM pasaportes WHERE id_pasaportes = " + id + " ");
+        return getOne("SELECT * FROM pasaportes WHERE id_pasaporte = " + id + " ");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoI
     protected Pasaporte create(ResultSet rs) throws SQLException {
         final int idPais = rs.getInt("id_pais");
         JdbcPaisDao paisDao = factory.getDao(JdbcPaisDao.class);
-        return new Pasaporte(rs.getInt("id_pasaportes"),
+        return new Pasaporte(rs.getInt("id_pasaporte"),
                 rs.getInt("nro_pasaporte"),
                 rs.getString("autoridad_emision"),
                 rs.getDate("fecha_emision"),

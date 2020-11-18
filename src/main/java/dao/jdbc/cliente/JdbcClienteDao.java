@@ -64,8 +64,9 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
         statement.setDate(5, entity.getFechaNacimiento());
         statement.setString(6, entity.getEmail());
         statement.setInt(7, entity.getDireccion().getIdDireccion());
-        statement.setInt(8, entity.getPasaporte().getIdPasaportes());
-        statement.setInt(9, entity.getPasajeroFrecuente().getIdPasajeroFrecuente());
+        statement.setInt(8, entity.getTelefono().getIdTelefonos());
+        statement.setInt(9, entity.getPasaporte().getIdPasaporte());
+        statement.setInt(10, entity.getPasajeroFrecuente().getIdPasajeroFrecuente());
     }
 
     @Override

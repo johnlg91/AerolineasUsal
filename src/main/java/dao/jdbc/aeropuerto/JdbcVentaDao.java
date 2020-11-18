@@ -20,7 +20,7 @@ public class JdbcVentaDao extends AbstractJdbcDao<Venta> implements VentaDAO {
     public boolean insert(Venta element) {
         int id = insert("INSERT INTO ventas(fec_hs_venta, forma_pago, id_cliente, id_vuelo, id_aerolinea) " +
                 "VALUES(?,?,?,?,?) ", element);
-        element.setIdVentas(id);
+        element.setIdVenta(id);
         return false;
     }
 
@@ -32,17 +32,17 @@ public class JdbcVentaDao extends AbstractJdbcDao<Venta> implements VentaDAO {
                 "id_cliente = ?," +
                 "id_vuelo = ?," +
                 "id_aerolinea = ?" +
-                "WHERE id_ventas = ?", element, id) > 0;
+                "WHERE id_venta = ?", element, id) > 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return delete("DELETE FROM ventas WHERE id_ventas = ?", id);
+        return delete("DELETE FROM ventas WHERE id_venta = ?", id);
     }
 
     @Override
     public Venta get(int id) {
-        return getOne("SELECT * FROM ventas WHERE id_ventas = " + id);
+        return getOne("SELECT * FROM ventas WHERE id_venta = " + id);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class JdbcVentaDao extends AbstractJdbcDao<Venta> implements VentaDAO {
         JdbcVueloDao vueloDao = factory.getDao(JdbcVueloDao.class);
         JdbcAerolineaDao aerolineaDao = factory.getDao(JdbcAerolineaDao.class);
         return new Venta(
-                rs.getInt("id_ventas"),
+                rs.getInt("id_venta"),
                 rs.getTimestamp("fec_hs_venta"),
                 rs.getString("forma_pago"),
                 clienteDao.get(rs.getInt("id_cliente")),

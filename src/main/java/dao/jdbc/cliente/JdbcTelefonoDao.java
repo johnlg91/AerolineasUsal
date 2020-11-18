@@ -36,12 +36,12 @@ public class JdbcTelefonoDao extends AbstractJdbcDao<Telefono> implements DaoInt
 
     @Override
     public boolean delete(int id) {
-        return delete("DELETE FROM telefonos WHERE id_telefonos = ?", id);
+        return delete("DELETE FROM telefonos WHERE id_telefono = ?", id);
     }
 
     @Override
     public Telefono get(int id) {
-        return getOne("SELECT * FROM telefonos WHERE id_telefonos = " + id + " ");
+        return getOne("SELECT * FROM telefonos WHERE id_telefono = " + id + " ");
     }
 
     @Override
@@ -51,7 +51,7 @@ public class JdbcTelefonoDao extends AbstractJdbcDao<Telefono> implements DaoInt
 
     @Override
     protected Telefono create(ResultSet rs) throws SQLException {
-        return new Telefono(rs.getInt("id_telefonos"),
+        return new Telefono(rs.getInt("id_telefono"),
                 rs.getString("personal"),
                 rs.getString("celular"),
                 rs.getString("laboral"));

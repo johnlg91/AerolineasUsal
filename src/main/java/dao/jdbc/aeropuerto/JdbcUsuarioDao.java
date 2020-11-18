@@ -28,17 +28,17 @@ public class JdbcUsuarioDao extends AbstractJdbcDao<Usuario> implements UsuarioD
                 " SET nombre_usuario = ?," +
                 "clave = ?," +
                 "perfil = ?" +
-                "WHERE id_usuarios = ?", element, id) > 0;
+                "WHERE id_usuario = ?", element, id) > 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return delete("DELETE FROM usuarios WHERE id_usuarios = ?", id);
+        return delete("DELETE FROM usuarios WHERE id_usuario = ?", id);
     }
 
     @Override
     public Usuario get(int id) {
-        return getOne("SELECT  * FROM usuarios WHERE id_usuarios = " + id);
+        return getOne("SELECT  * FROM usuarios WHERE id_usuario = " + id);
     }
 
     @Override
@@ -56,8 +56,8 @@ public class JdbcUsuarioDao extends AbstractJdbcDao<Usuario> implements UsuarioD
     @Override
     protected Usuario create(ResultSet rs) throws SQLException {
         return new Usuario(
-                rs.getInt("id_usuarios"),
-                rs.getString("nombre_usuarios"),
+                rs.getInt("id_usuario"),
+                rs.getString("nombre_usuario"),
                 rs.getString("clave"),
                 rs.getString("perfil")
         );

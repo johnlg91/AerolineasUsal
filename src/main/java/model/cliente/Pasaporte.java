@@ -23,7 +23,15 @@ public class Pasaporte {
     this.pais = pais;
   }
 
-  public int getIdPasaportes() {
+  public Pasaporte(int nroPasaporte, String autoridadEmision, Date fechaEmision, Date fechaVencimiento, Pais pais) {
+    this.nroPasaporte = nroPasaporte;
+    this.autoridadEmision = autoridadEmision;
+    this.fechaEmision = fechaEmision;
+    this.fechaVencimiento = fechaVencimiento;
+    this.pais = pais;
+  }
+
+  public int getIdPasaporte() {
     return idPasaportes;
   }
 
