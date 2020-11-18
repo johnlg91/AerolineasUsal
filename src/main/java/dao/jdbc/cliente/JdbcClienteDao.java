@@ -53,6 +53,9 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
     public Cliente getByName(String name) {
         return getOne("SELECT * FROM clientes WHERE nombre = " + name);
     }
+    public Cliente getByEmail(String email) {
+        return getOne("SELECT * FROM clientes WHERE email = " + email);
+    }
     public Cliente getByDni(int dni) {
         return getOne("SELECT * FROM clientes WHERE dni = " + dni);
     }
