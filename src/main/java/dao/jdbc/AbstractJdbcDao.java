@@ -61,6 +61,8 @@ public abstract class AbstractJdbcDao<T> {
     }
 
 
+
+
     protected T getOne(/*@Language(value = "SQL")*/String query) {
         try (
                 Statement statement = getConnection().createStatement();
@@ -72,6 +74,8 @@ public abstract class AbstractJdbcDao<T> {
             throw handleException(e);
         }
     }
+
+
 
     protected List<T> list(/*@Language(value = "SQL")*/String query) {
         try (

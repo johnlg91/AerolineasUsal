@@ -50,6 +50,8 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
         return getOne("SELECT * FROM clientes WHERE id_cliente = " + id);
     }
 
+
+
     public Cliente getByName(String name) {
         return getOne("SELECT * FROM clientes WHERE nombre = " + name);
     }
@@ -58,6 +60,11 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
     }
     public Cliente getByDni(int dni) {
         return getOne("SELECT * FROM clientes WHERE dni = " + dni);
+    }
+
+    @Override
+    public Cliente getByDniEmail(int dni, String email) {
+        return getOne("SELECT * FROM clientes WHERE dni = " + dni + " AND email = " + email);
     }
 
     @Override
@@ -101,4 +108,6 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
                 pasaporteDao.get(idPasaporte),
                 pasajeroFrecuenteDao.get(idPasajeroFrecuente));
     }
+
+
 }

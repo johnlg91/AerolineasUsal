@@ -42,6 +42,11 @@ public class JdbcUsuarioDao extends AbstractJdbcDao<Usuario> implements UsuarioD
     }
 
     @Override
+    public Usuario getByName(String name) {
+        return getOne("SELECT  * FROM usuarios WHERE nombre_usuario = " + name);
+    }
+
+    @Override
     public List<Usuario> getAll() {
         return list("SELECT * FROM usuarios");
     }
