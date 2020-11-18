@@ -50,7 +50,7 @@ public class TestJdbcDaos {
         }
     }
 
-    //@Test
+    @Test
     public void clienteDao() {
         try (JdbcDaoFactory f = new JdbcDaoFactory()) {
             final ProvinciaDao provinciaDao = f.getDao(JdbcProvinciaDao.class);
@@ -66,13 +66,12 @@ public class TestJdbcDaos {
             System.out.println(d);
 
             final JdbcTelefonoDao telefonoDao = f.getDao(JdbcTelefonoDao.class);
-            Telefono t = new Telefono("0000","11111","22222");
-            telefonoDao.insert(t);
-            System.out.println(telefonoDao.get(t.getIdTelefonos()));
+            Telefono t = telefonoDao.get(2);
+            System.out.println(telefonoDao.get(2));
 
             final JdbcPasaporteDao pasaporteDAO = f.getDao(JdbcPasaporteDao.class);
-            Pasaporte pa = new Pasaporte(33333,"jhjhjh", null, null,paisDao.get(1));
-            System.out.println(pa.getIdPasaporte());
+            Pasaporte pa = pasaporteDAO.get(1);
+           System.out.println(pa);
 
             final PasajeroFrecuenteDAO pfrecuenteDao = f.getDao(JdbcPasajeroFrecuenteDao.class);
             PasajeroFrecuente pfr = pfrecuenteDao.get(1);
@@ -82,7 +81,7 @@ public class TestJdbcDaos {
             final ClienteDAO clienteDao = f.getDao(JdbcClienteDao.class);
             Date date = new java.sql.Date(0);
             // NO INSERTAAAAA
-            Cliente c = new Cliente("ariel", "perez", 111, 111, date, "aa@aa.com.ar", d, t, pa, pfr);
+            Cliente c = new Cliente("ariel", "perez", 222, 222, date, "aa@aa.com.ar", d, t, pa, pfr);
             System.out.println(c);
             clienteDao.insert(c);
         }
