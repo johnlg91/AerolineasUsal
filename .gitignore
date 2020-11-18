@@ -7,4 +7,4 @@ bin/**
 build/
 .DS_STORE
 src/main/resources/db/Connection.properties
-
+lib/

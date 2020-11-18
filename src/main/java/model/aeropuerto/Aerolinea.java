@@ -5,16 +5,16 @@ public class Aerolinea {
 
   private int idAerolinea;
   private String nombreAerolinea;
-  private String alianza;
+  private Alianza alianza;
 
 
-  public Aerolinea(int idAerolinea, String nombreAerolinea, String alianza) {
+  public Aerolinea(int idAerolinea, String nombreAerolinea, Alianza alianza) {
     this.idAerolinea = idAerolinea;
     this.nombreAerolinea = nombreAerolinea;
     this.alianza = alianza;
   }
 
-  public Aerolinea(String nombreAerolinea, String alianza) {
+  public Aerolinea(String nombreAerolinea, Alianza alianza) {
     this.nombreAerolinea = nombreAerolinea;
     this.alianza = alianza;
   }
@@ -37,11 +37,11 @@ public class Aerolinea {
   }
 
 
-  public String getAlianza() {
+  public Alianza getAlianza() {
     return alianza;
   }
 
-  public void setAlianza(String alianza) {
+  public void setAlianza(Alianza alianza) {
     this.alianza = alianza;
   }
 

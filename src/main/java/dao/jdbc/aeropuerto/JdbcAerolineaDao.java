@@ -4,6 +4,7 @@ import dao.interfaces.aeropuerto.AerolineaDao;
 import dao.jdbc.AbstractJdbcDao;
 import dao.jdbc.JdbcDaoFactory;
 import model.aeropuerto.Aerolinea;
+import model.aeropuerto.Alianza;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,13 +51,14 @@ public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements Aero
     @Override
     protected void setFields(PreparedStatement statement, Aerolinea entity) throws SQLException {
         statement.setString(1, entity.getNombreAerolinea());
-        statement.setString(2, entity.getAlianza());
+        final Alianza alianza = entity.getAlianza();
+        statement.setString(2, alianza == null ? "" : alianza.toString());
     }
 
     @Override
     protected Aerolinea create(ResultSet rs) throws SQLException {
         return new Aerolinea(rs.getInt("id_aerolinea"),
                 rs.getString("nombre_aerolinea"),
-                rs.getString("alianza"));
+                Alianza.fromString(rs.getString("alianza")));
     }
 }
