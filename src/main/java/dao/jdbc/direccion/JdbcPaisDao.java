@@ -14,7 +14,7 @@ import java.util.List;
 public class JdbcPaisDao extends AbstractJdbcDao<Pais> implements PaisDao {
 
 
-    protected JdbcPaisDao(JdbcDaoFactory factory) {
+    public JdbcPaisDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

@@ -39,7 +39,7 @@ public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements Aero
 
     @Override
     public Aerolinea get(int id) {
-        return getOne("SELECT * FROM aerolineas WHERE id_aerolinea = " + id);
+        return getOne("SELECT * FROM aerolineas WHERE id_aerolineas = " + id);
     }
 
     @Override

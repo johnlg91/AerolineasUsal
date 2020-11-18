@@ -69,4 +69,11 @@ public class PasajeroFrecuente {
   public void setAerolinea(Aerolinea aerolinea) {
     this.aerolinea = aerolinea;
   }
+
+@Override
+public String toString() {
+	return "PasajeroFrecuente [idPasajeroFrecuente=" + idPasajeroFrecuente + ", alianza=" + alianza + ", numero="
+			+ numero + ", categoria=" + categoria + ", aerolinea=" + aerolinea + "]";
+}
+  
 }

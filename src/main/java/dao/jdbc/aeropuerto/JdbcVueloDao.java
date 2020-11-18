@@ -12,7 +12,7 @@ import java.util.List;
 
 public class JdbcVueloDao extends AbstractJdbcDao<Vuelo> implements VueloDAO {
 
-    protected JdbcVueloDao(JdbcDaoFactory factory) {
+    public JdbcVueloDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

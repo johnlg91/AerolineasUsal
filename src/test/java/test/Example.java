@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class Example {
     public static void main(String[] args) {
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aerolineas", "root", "aerolineas-usal")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/aerolineas", "root", "Arescom1234!")) {
 
             System.out.println("Java JDBC PostgreSQL Example");
             // When this class first attempts to establish a connection, it automatically loads any JDBC 4.0 drivers found within

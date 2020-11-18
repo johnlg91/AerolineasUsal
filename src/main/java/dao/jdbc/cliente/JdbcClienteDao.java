@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteDAO {
-    protected JdbcClienteDao(JdbcDaoFactory factory) {
+    public JdbcClienteDao(JdbcDaoFactory factory) {
         super(factory);
     }
 
@@ -21,7 +21,7 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
         int id = insert("INSERT INTO clientes(nombre, apellido, dni, cuit_cuil, fecha_nacimiento, email, id_direccion, id_telefono, id_pasaporte, id_pasajero_frecuente) " +
                 " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", element);
         element.setIdCliente(id);
-        return id >= 0;
+        return true;
     }
 
     @Override

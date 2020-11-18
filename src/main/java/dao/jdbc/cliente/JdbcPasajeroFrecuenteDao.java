@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcPasajeroFrecuenteDao extends AbstractJdbcDao<PasajeroFrecuente> implements PasajeroFrecuenteDAO {
-    protected JdbcPasajeroFrecuenteDao(JdbcDaoFactory factory) {
+    public JdbcPasajeroFrecuenteDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

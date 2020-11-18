@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcVentaDao extends AbstractJdbcDao<Venta> implements VentaDAO {
-    protected JdbcVentaDao(JdbcDaoFactory factory) {
+    public JdbcVentaDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

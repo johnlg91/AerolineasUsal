@@ -57,4 +57,13 @@ public class Telefono {
     this.laboral = laboral;
   }
 
+@Override
+public String toString() {
+	return "Telefono [idTelefonos=" + idTelefonos + ", personal=" + personal + ", celular=" + celular + ", laboral="
+			+ laboral + "]";
+}
+  
+  
+  
+
 }

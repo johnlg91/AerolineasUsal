@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcAeropuertoDao extends AbstractJdbcDao<Aeropuerto> implements AeropuertoDAO {
-    protected JdbcAeropuertoDao(JdbcDaoFactory factory) {
+    public JdbcAeropuertoDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

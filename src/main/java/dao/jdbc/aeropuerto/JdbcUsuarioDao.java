@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcUsuarioDao extends AbstractJdbcDao<Usuario> implements UsuarioDAO {
-    protected JdbcUsuarioDao(JdbcDaoFactory factory) {
+    public JdbcUsuarioDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

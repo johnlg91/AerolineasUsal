@@ -75,4 +75,14 @@ public class Pasaporte {
   public void setPais(Pais pais) {
     this.pais = pais;
   }
+
+@Override
+public String toString() {
+	return "Pasaporte [idPasaportes=" + idPasaportes + ", nroPasaporte=" + nroPasaporte + ", autoridadEmision="
+			+ autoridadEmision + ", fechaEmision=" + fechaEmision + ", fechaVencimiento=" + fechaVencimiento + ", pais="
+			+ pais + "]";
+}
+  
+  
+  
 }

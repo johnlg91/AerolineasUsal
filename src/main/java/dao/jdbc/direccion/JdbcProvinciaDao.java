@@ -13,7 +13,7 @@ import java.util.List;
 
 public class JdbcProvinciaDao extends AbstractJdbcDao<Provincia> implements ProvinciaDao {
 
-    protected JdbcProvinciaDao(JdbcDaoFactory factory) {
+    public JdbcProvinciaDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

@@ -140,4 +140,14 @@ public class Cliente {
   public void setPasajeroFrecuente(PasajeroFrecuente pasajeroFrecuente) {
     this.pasajeroFrecuente = pasajeroFrecuente;
   }
+
+@Override
+public String toString() {
+	return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni
+			+ ", cuitCuil=" + cuitCuil + ", fechaNacimiento=" + fechaNacimiento + ", email=" + email + ", direccion="
+			+ direccion + ", telefono=" + telefono + ", pasaporte=" + pasaporte + ", pasajeroFrecuente="
+			+ pasajeroFrecuente + "]";
+}
+  
+  
 }

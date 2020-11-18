@@ -12,7 +12,7 @@ import java.util.List;
 
 public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements DireccionDao {
 
-    protected JdbcDireccionDao(JdbcDaoFactory factory) {
+    public JdbcDireccionDao(JdbcDaoFactory factory) {
         super(factory);
     }
 

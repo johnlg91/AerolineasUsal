@@ -102,4 +102,13 @@ public class Direccion {
   public void setProvinciaOtro(String provinciaOtro) {
     this.provinciaOtro = provinciaOtro;
   }
+
+@Override
+public String toString() {
+	return "Direccion [idDireccion=" + idDireccion + ", calle=" + calle + ", altura=" + altura + ", ciudad=" + ciudad
+			+ ", codigoPostal=" + codigoPostal + ", pais=" + pais + ", provincia=" + provincia + ", provinciaOtro="
+			+ provinciaOtro + "]";
+}
+  
+  
 }

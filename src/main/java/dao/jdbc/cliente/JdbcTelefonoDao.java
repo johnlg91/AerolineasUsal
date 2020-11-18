@@ -13,7 +13,7 @@ import java.util.List;
 public class JdbcTelefonoDao extends AbstractJdbcDao<Telefono> implements DaoInterface<Telefono> {
 
 
-    protected JdbcTelefonoDao(JdbcDaoFactory factory) {
+    public JdbcTelefonoDao(JdbcDaoFactory factory) {
         super(factory);
     }
 
@@ -36,12 +36,12 @@ public class JdbcTelefonoDao extends AbstractJdbcDao<Telefono> implements DaoInt
 
     @Override
     public boolean delete(int id) {
-        return delete("DELETE FROM telefonos WHERE id_telefono = ?", id);
+        return delete("DELETE FROM telefonos WHERE id_telefonos = ?", id);
     }
 
     @Override
     public Telefono get(int id) {
-        return getOne("SELECT * FROM telefonos WHERE id_telefono = " + id + " ");
+        return getOne("SELECT * FROM telefonos WHERE id_telefonos = " + id + " ");
     }
 
     @Override
@@ -51,10 +51,10 @@ public class JdbcTelefonoDao extends AbstractJdbcDao<Telefono> implements DaoInt
 
     @Override
     protected Telefono create(ResultSet rs) throws SQLException {
-        return new Telefono(rs.getInt("id_telefono"),
+        return new Telefono(rs.getInt("id_telefonos"),
                 rs.getString("personal"),
                 rs.getString("celular"),
-                rs.getString("lobural"));
+                rs.getString("laboral"));
     }
 
     @Override
