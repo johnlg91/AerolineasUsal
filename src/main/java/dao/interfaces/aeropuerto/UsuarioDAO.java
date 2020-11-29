@@ -5,5 +5,6 @@ import model.aeropuerto.Usuario;
 
 public interface UsuarioDAO extends DaoInterface<Usuario> {
     Usuario getByName(String name);
+    Usuario getByNamePassword(String name, String password);
 
 }

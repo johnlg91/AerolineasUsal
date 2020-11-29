@@ -2,6 +2,7 @@ package dao.jdbc.aeropuerto;
 
 import dao.interfaces.aeropuerto.AerolineaDao;
 import dao.jdbc.AbstractJdbcDao;
+import dao.jdbc.DaoManager;
 import dao.jdbc.JdbcDaoFactory;
 import model.aeropuerto.Aerolinea;
 import model.aeropuerto.Alianza;
@@ -13,10 +14,10 @@ import java.util.List;
 
 public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements AerolineaDao {
 
-    public JdbcAerolineaDao(JdbcDaoFactory factory) {
-        super(factory);
-    }
 
+    public JdbcAerolineaDao(DaoManager manager) {
+        super(manager);
+    }
 
     @Override
     public boolean insert(Aerolinea element) {
@@ -59,6 +60,7 @@ public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements Aero
     protected Aerolinea create(ResultSet rs) throws SQLException {
         return new Aerolinea(rs.getInt("id_aerolinea"),
                 rs.getString("nombre_aerolinea"),
+                //accede al enum...sera malo?
                 Alianza.fromString(rs.getString("alianza")));
     }
 }

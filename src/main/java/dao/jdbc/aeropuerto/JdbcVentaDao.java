@@ -2,7 +2,7 @@ package dao.jdbc.aeropuerto;
 
 import dao.interfaces.aeropuerto.VentaDAO;
 import dao.jdbc.AbstractJdbcDao;
-import dao.jdbc.JdbcDaoFactory;
+import dao.jdbc.DaoManager;
 import dao.jdbc.cliente.JdbcClienteDao;
 import model.aeropuerto.Venta;
 
@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcVentaDao extends AbstractJdbcDao<Venta> implements VentaDAO {
-    public JdbcVentaDao(JdbcDaoFactory factory) {
-        super(factory);
+    public JdbcVentaDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -61,16 +61,13 @@ public class JdbcVentaDao extends AbstractJdbcDao<Venta> implements VentaDAO {
 
     @Override
     protected Venta create(ResultSet rs) throws SQLException {
-        JdbcClienteDao clienteDao = factory.getDao(JdbcClienteDao.class);
-        JdbcVueloDao vueloDao = factory.getDao(JdbcVueloDao.class);
-        JdbcAerolineaDao aerolineaDao = factory.getDao(JdbcAerolineaDao.class);
         return new Venta(
                 rs.getInt("id_venta"),
                 rs.getTimestamp("fec_hs_venta"),
                 rs.getString("forma_pago"),
-                clienteDao.get(rs.getInt("id_cliente")),
-                vueloDao.get(rs.getInt("id_vuelo")),
-                aerolineaDao.get(rs.getInt("id_aerolinea"))
+                manager.getEntity(rs.getInt("id_cliente"), JdbcClienteDao.class),
+                manager.getEntity(rs.getInt("id_vuelo"), JdbcVueloDao.class),
+                manager.getEntity(rs.getInt("id_aerolinea"), JdbcAerolineaDao.class)
         );
     }
 }

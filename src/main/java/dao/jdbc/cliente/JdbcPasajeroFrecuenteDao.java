@@ -2,6 +2,7 @@ package dao.jdbc.cliente;
 
 import dao.interfaces.cliente.PasajeroFrecuenteDAO;
 import dao.jdbc.AbstractJdbcDao;
+import dao.jdbc.DaoManager;
 import dao.jdbc.JdbcDaoFactory;
 import dao.jdbc.aeropuerto.JdbcAerolineaDao;
 import model.cliente.PasajeroFrecuente;
@@ -12,8 +13,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcPasajeroFrecuenteDao extends AbstractJdbcDao<PasajeroFrecuente> implements PasajeroFrecuenteDAO {
-    public JdbcPasajeroFrecuenteDao(JdbcDaoFactory factory) {
-        super(factory);
+
+    public JdbcPasajeroFrecuenteDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -60,12 +62,11 @@ public class JdbcPasajeroFrecuenteDao extends AbstractJdbcDao<PasajeroFrecuente>
 
     @Override
     protected PasajeroFrecuente create(ResultSet rs) throws SQLException {
-        JdbcAerolineaDao aerolineaDao = factory.getDao(JdbcAerolineaDao.class);
         int idAerolinea = rs.getInt("id_aerolinea");
         return new PasajeroFrecuente(rs.getInt("id_pasajero_frecuente"),
                 rs.getString("alianza"),
                 rs.getInt("numero"),
                 rs.getString("categoria"),
-                aerolineaDao.get(idAerolinea));
+                manager.getEntity(idAerolinea, JdbcAerolineaDao.class));
     }
 }

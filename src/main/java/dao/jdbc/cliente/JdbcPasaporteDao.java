@@ -2,7 +2,7 @@ package dao.jdbc.cliente;
 
 import dao.interfaces.DaoInterface;
 import dao.jdbc.AbstractJdbcDao;
-import dao.jdbc.JdbcDaoFactory;
+import dao.jdbc.DaoManager;
 import dao.jdbc.direccion.JdbcPaisDao;
 import model.cliente.Pasaporte;
 
@@ -12,8 +12,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoInterface<Pasaporte> {
-    public JdbcPasaporteDao(JdbcDaoFactory factory) {
-        super(factory);
+
+    public JdbcPasaporteDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -53,13 +54,12 @@ public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoI
     @Override
     protected Pasaporte create(ResultSet rs) throws SQLException {
         final int idPais = rs.getInt("id_pais");
-        JdbcPaisDao paisDao = factory.getDao(JdbcPaisDao.class);
         return new Pasaporte(rs.getInt("id_pasaporte"),
                 rs.getInt("nro_pasaporte"),
                 rs.getString("autoridad_emision"),
                 rs.getDate("fecha_emision"),
                 rs.getDate("fecha_vencimiento"),
-                paisDao.get(idPais));
+                manager.getEntity(idPais, JdbcPaisDao.class));
     }
 
     @Override

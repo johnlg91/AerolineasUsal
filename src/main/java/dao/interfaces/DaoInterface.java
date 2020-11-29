@@ -4,15 +4,16 @@ import java.util.List;
 
 /**
  * INTERFAZ GENERAL PARA Dao EN DB
+ * @param <E> The Entity
  */
 
-public interface DaoInterface<T>{
+public interface DaoInterface<E>{
 
-	boolean insert(T element);
-	boolean update(int id, T element);
+	boolean insert(E element);
+	boolean update(int id, E element);
 	boolean delete(int id);
 
-	T get(int id);
-	List<T> getAll();
+	E get(int id);
+	List<E> getAll();
 	
 }

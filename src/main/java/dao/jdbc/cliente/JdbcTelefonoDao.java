@@ -2,6 +2,7 @@ package dao.jdbc.cliente;
 
 import dao.interfaces.DaoInterface;
 import dao.jdbc.AbstractJdbcDao;
+import dao.jdbc.DaoManager;
 import dao.jdbc.JdbcDaoFactory;
 import model.cliente.Telefono;
 
@@ -13,8 +14,8 @@ import java.util.List;
 public class JdbcTelefonoDao extends AbstractJdbcDao<Telefono> implements DaoInterface<Telefono> {
 
 
-    public JdbcTelefonoDao(JdbcDaoFactory factory) {
-        super(factory);
+    public JdbcTelefonoDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override

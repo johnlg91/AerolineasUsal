@@ -2,7 +2,7 @@ package dao.jdbc.aeropuerto;
 
 import dao.interfaces.aeropuerto.UsuarioDAO;
 import dao.jdbc.AbstractJdbcDao;
-import dao.jdbc.JdbcDaoFactory;
+import dao.jdbc.DaoManager;
 import model.aeropuerto.Usuario;
 
 import java.sql.PreparedStatement;
@@ -11,8 +11,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcUsuarioDao extends AbstractJdbcDao<Usuario> implements UsuarioDAO {
-    public JdbcUsuarioDao(JdbcDaoFactory factory) {
-        super(factory);
+
+    public JdbcUsuarioDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -43,7 +44,12 @@ public class JdbcUsuarioDao extends AbstractJdbcDao<Usuario> implements UsuarioD
 
     @Override
     public Usuario getByName(String name) {
-        return getOne("SELECT  * FROM usuarios WHERE nombre_usuario = " + name);
+        return getOne("SELECT  * FROM usuarios WHERE nombre_usuario = '" + name + "'");
+    }
+
+    @Override
+    public Usuario getByNamePassword(String name, String password) {
+        return getOne("SELECT  * FROM usuarios WHERE nombre_usuario = '" + name + "' AND clave = '" + password + "'");
     }
 
     @Override

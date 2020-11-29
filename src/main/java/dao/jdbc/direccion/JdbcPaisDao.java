@@ -2,10 +2,9 @@ package dao.jdbc.direccion;
 
 import dao.interfaces.direccion.PaisDao;
 import dao.jdbc.AbstractJdbcDao;
-import dao.jdbc.JdbcDaoFactory;
+import dao.jdbc.DaoManager;
 import model.direccion.Pais;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +13,8 @@ import java.util.List;
 public class JdbcPaisDao extends AbstractJdbcDao<Pais> implements PaisDao {
 
 
-    public JdbcPaisDao(JdbcDaoFactory factory) {
-        super(factory);
+    public JdbcPaisDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -37,7 +36,7 @@ public class JdbcPaisDao extends AbstractJdbcDao<Pais> implements PaisDao {
 
     @Override
     public boolean delete(int id) {
-        return delete("DELETE FROM paises WHERE id_pais = ?",id);
+        return delete("DELETE FROM paises WHERE id_pais = ?", id);
     }
 
     @Override

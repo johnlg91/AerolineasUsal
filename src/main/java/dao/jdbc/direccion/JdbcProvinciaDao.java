@@ -2,10 +2,10 @@ package dao.jdbc.direccion;
 
 import dao.interfaces.direccion.ProvinciaDao;
 import dao.jdbc.AbstractJdbcDao;
+import dao.jdbc.DaoManager;
 import dao.jdbc.JdbcDaoFactory;
 import model.direccion.Provincia;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,8 +13,9 @@ import java.util.List;
 
 public class JdbcProvinciaDao extends AbstractJdbcDao<Provincia> implements ProvinciaDao {
 
-    public JdbcProvinciaDao(JdbcDaoFactory factory) {
-        super(factory);
+
+    public JdbcProvinciaDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -48,9 +49,8 @@ public class JdbcProvinciaDao extends AbstractJdbcDao<Provincia> implements Prov
 
     @Override
     protected Provincia create(ResultSet rs) throws SQLException {
-        final Provincia provincia = new Provincia(rs.getString("nombre_provincia"));
-        provincia.setIdProvincia(rs.getInt("id_provincia"));
-        return provincia;
+        return new Provincia(rs.getInt("id_provincia"),
+                rs.getString("nombre_provincia"));
     }
 
 

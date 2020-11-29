@@ -2,7 +2,7 @@ package dao.jdbc.direccion;
 
 import dao.interfaces.direccion.DireccionDao;
 import dao.jdbc.AbstractJdbcDao;
-import dao.jdbc.JdbcDaoFactory;
+import dao.jdbc.DaoManager;
 import model.direccion.Direccion;
 
 import java.sql.PreparedStatement;
@@ -12,8 +12,9 @@ import java.util.List;
 
 public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements DireccionDao {
 
-    public JdbcDireccionDao(JdbcDaoFactory factory) {
-        super(factory);
+
+    public JdbcDireccionDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -56,8 +57,6 @@ public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements Dire
 
     @Override
     protected Direccion create(ResultSet rs) throws SQLException {
-        JdbcPaisDao paisDao = factory.getDao(JdbcPaisDao.class);
-        JdbcProvinciaDao provinciaDao = factory.getDao(JdbcProvinciaDao.class);
         int idPais = rs.getInt("id_pais");
         int idProvincia = rs.getInt("id_provincia");
         return new Direccion(rs.getInt("id_direccion"),
@@ -65,8 +64,8 @@ public class JdbcDireccionDao extends AbstractJdbcDao<Direccion> implements Dire
                 rs.getInt("altura"),
                 rs.getString("ciudad"),
                 rs.getInt("codigo_postal"),
-                paisDao.get(idPais),
-                provinciaDao.get(idProvincia),
+                manager.getEntity(idPais, JdbcPaisDao.class),
+                manager.getEntity(idProvincia, JdbcProvinciaDao.class),
                 rs.getString("provincia_otro"));
     }
 

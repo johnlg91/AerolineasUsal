@@ -22,6 +22,7 @@ import java.util.Scanner;
  */
 public class JdbcDaoFactory implements Closeable {
 
+    private final DaoManager manager;
     private Connection connection;
     private Map<String, Object> daos = new HashMap<>();
 
@@ -34,13 +35,14 @@ public class JdbcDaoFactory implements Closeable {
             this.connection = DriverManager.getConnection(
                     properties.getProperty("URL"),
                     properties.getProperty("USER"),
-                    //todo, agregar al ignore
                     properties.getProperty("PASS"));
+            this.manager = new DaoManager(this);
         } catch (SQLException ex) {
             throw new RuntimeException("Error connecting to the database", ex);
         } catch (IOException e) {
             System.out.println("Connection.properties not found");
             e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -60,7 +62,7 @@ public class JdbcDaoFactory implements Closeable {
     public <T> T getDao(Class<T> daoClass) {
         return (T) daos.computeIfAbsent(daoClass.getName(), s -> {
             try {
-                return daoClass.getConstructor(JdbcDaoFactory.class).newInstance(this);
+                return daoClass.getConstructor(DaoManager.class).newInstance(manager);
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new RuntimeException(e);

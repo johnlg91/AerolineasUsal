@@ -2,6 +2,7 @@ package dao.jdbc.aeropuerto;
 
 import dao.interfaces.aeropuerto.AeropuertoDAO;
 import dao.jdbc.AbstractJdbcDao;
+import dao.jdbc.DaoManager;
 import dao.jdbc.JdbcDaoFactory;
 import dao.jdbc.direccion.JdbcPaisDao;
 import dao.jdbc.direccion.JdbcProvinciaDao;
@@ -13,8 +14,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcAeropuertoDao extends AbstractJdbcDao<Aeropuerto> implements AeropuertoDAO {
-    public JdbcAeropuertoDao(JdbcDaoFactory factory) {
-        super(factory);
+    public JdbcAeropuertoDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -63,14 +64,12 @@ public class JdbcAeropuertoDao extends AbstractJdbcDao<Aeropuerto> implements Ae
 
     @Override
     protected Aeropuerto create(ResultSet rs) throws SQLException {
-        JdbcProvinciaDao provinciaDao = factory.getDao(JdbcProvinciaDao.class);
-        JdbcPaisDao paisDao = factory.getDao(JdbcPaisDao.class);
         return new Aeropuerto(
                 rs.getInt("id_aeropuerto"),
                 rs.getString("codigo_aeropuerto"),
                 rs.getString("ciudad"),
-                paisDao.get(rs.getInt("id_pais")),
-                provinciaDao.get(rs.getInt("id_provincia")),
+                manager.getEntity(rs.getInt("id_pais"), JdbcPaisDao.class),
+                manager.getEntity(rs.getInt("id_provincia"), JdbcProvinciaDao.class),
                 rs.getString("provincia_otro")
         );
     }

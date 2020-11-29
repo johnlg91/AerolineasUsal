@@ -2,6 +2,7 @@ package dao.jdbc.aeropuerto;
 
 import dao.interfaces.aeropuerto.VueloDAO;
 import dao.jdbc.AbstractJdbcDao;
+import dao.jdbc.DaoManager;
 import dao.jdbc.JdbcDaoFactory;
 import model.aeropuerto.Vuelo;
 
@@ -12,8 +13,9 @@ import java.util.List;
 
 public class JdbcVueloDao extends AbstractJdbcDao<Vuelo> implements VueloDAO {
 
-    public JdbcVueloDao(JdbcDaoFactory factory) {
-        super(factory);
+
+    public JdbcVueloDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -67,8 +69,6 @@ public class JdbcVueloDao extends AbstractJdbcDao<Vuelo> implements VueloDAO {
 
     @Override
     protected Vuelo create(ResultSet rs) throws SQLException {
-        JdbcAerolineaDao aerolineaDao = factory.getDao(JdbcAerolineaDao.class);
-        JdbcAeropuertoDao aeropuertoDao = factory.getDao(JdbcAeropuertoDao.class);
         return new Vuelo(
                 rs.getInt("id_vuelo"),
                 rs.getString("nro_vuelo"),
@@ -76,9 +76,9 @@ public class JdbcVueloDao extends AbstractJdbcDao<Vuelo> implements VueloDAO {
                 rs.getTimestamp("fec_hs_salida"),
                 rs.getTimestamp("fec_hs_llegada"),
                 rs.getInt("tiempo_vuelo"),
-                aerolineaDao.get(rs.getInt("id_aerolinea")),
-                aeropuertoDao.get(rs.getInt("id_aeropuerto_salida")),
-                aeropuertoDao.get(rs.getInt("id_aeropuerto_llegada"))
+                manager.getEntity(rs.getInt("id_aerolinea"), JdbcAerolineaDao.class),
+                manager.getEntity(rs.getInt("id_aeropuerto_salida"),JdbcAeropuertoDao.class),
+                manager.getEntity(rs.getInt("id_aeropuerto_llegada"),JdbcAeropuertoDao.class)
         );
     }
 }

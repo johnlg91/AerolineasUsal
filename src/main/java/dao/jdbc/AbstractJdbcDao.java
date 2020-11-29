@@ -2,6 +2,7 @@ package dao.jdbc;
 
 
 
+
 import org.intellij.lang.annotations.Language;
 
 import java.sql.*;
@@ -11,10 +12,10 @@ import java.util.List;
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 
 public abstract class AbstractJdbcDao<T> {
-    protected final JdbcDaoFactory factory;
+    protected final DaoManager manager;
 
-    public AbstractJdbcDao(JdbcDaoFactory factory) {
-        this.factory = factory;
+    public AbstractJdbcDao(DaoManager manager) {
+        this.manager = manager;
     }
 
     /**
@@ -61,9 +62,7 @@ public abstract class AbstractJdbcDao<T> {
     }
 
 
-
-
-    protected T getOne(/*@Language(value = "SQL")*/String query) {
+    protected T getOne(@Language(value = "SQL")String query) {
         try (
                 Statement statement = getConnection().createStatement();
                 ResultSet rs = statement.executeQuery(query)
@@ -74,8 +73,6 @@ public abstract class AbstractJdbcDao<T> {
             throw handleException(e);
         }
     }
-
-
 
     protected List<T> list(/*@Language(value = "SQL")*/String query) {
         try (
@@ -100,6 +97,6 @@ public abstract class AbstractJdbcDao<T> {
     protected abstract T create(ResultSet rs) throws SQLException;
 
     private Connection getConnection() {
-        return factory.getConnection();
+        return manager.getConnection();
     }
 }

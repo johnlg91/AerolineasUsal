@@ -2,6 +2,7 @@ package dao.jdbc.cliente;
 
 import dao.interfaces.cliente.ClienteDAO;
 import dao.jdbc.AbstractJdbcDao;
+import dao.jdbc.DaoManager;
 import dao.jdbc.JdbcDaoFactory;
 import dao.jdbc.direccion.JdbcDireccionDao;
 import model.cliente.Cliente;
@@ -12,8 +13,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteDAO {
-    public JdbcClienteDao(JdbcDaoFactory factory) {
-        super(factory);
+    public JdbcClienteDao(DaoManager manager) {
+        super(manager);
     }
 
     @Override
@@ -86,12 +87,9 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
         statement.setInt(10, entity.getPasajeroFrecuente().getIdPasajeroFrecuente());
     }
 
+
     @Override
     protected Cliente create(ResultSet rs) throws SQLException {
-        JdbcDireccionDao direccionDao = factory.getDao(JdbcDireccionDao.class);
-        JdbcTelefonoDao telefonoDao = factory.getDao(JdbcTelefonoDao.class);
-        JdbcPasaporteDao pasaporteDao = factory.getDao(JdbcPasaporteDao.class);
-        JdbcPasajeroFrecuenteDao pasajeroFrecuenteDao = factory.getDao(JdbcPasajeroFrecuenteDao.class);
         int idDireccion = rs.getInt("id_direccion");
         int idTelefono = rs.getInt("id_telefono");
         int idPasaporte = rs.getInt("id_pasaporte");
@@ -103,10 +101,10 @@ public class JdbcClienteDao extends AbstractJdbcDao<Cliente> implements ClienteD
                 rs.getInt("cuit_cuil"),
                 rs.getDate("fecha_nacimiento"),
                 rs.getString("email"),
-                direccionDao.get(idDireccion),
-                telefonoDao.get(idTelefono),
-                pasaporteDao.get(idPasaporte),
-                pasajeroFrecuenteDao.get(idPasajeroFrecuente));
+                manager.getEntity(idDireccion, JdbcDireccionDao.class),
+                manager.getEntity(idTelefono, JdbcTelefonoDao.class),
+                manager.getEntity(idPasaporte, JdbcPasaporteDao.class),
+                manager.getEntity(idPasajeroFrecuente,JdbcPasajeroFrecuenteDao.class));
     }
 
 
