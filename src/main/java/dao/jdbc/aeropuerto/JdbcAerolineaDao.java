@@ -21,7 +21,7 @@ public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements Aero
 
     @Override
     public boolean insert(Aerolinea element) {
-        int id = insert("INSERT INTO aerolineas(nombre_aerolinea, alianza)" +
+        int id = insert("INSERT INTO aerolineas(nombre_aerolineas, alianza)" +
                 " VALUES (?, ?)", element);
         element.setIdAerolinea(id);
         return id > 0;
@@ -31,17 +31,17 @@ public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements Aero
     public boolean update(int id, Aerolinea aerolinea) {
         return update("UPDATE aerolineas " +
                 "SET nombre_aerolinea = ?," +
-                "alianza = ? WHERE id_aerolinea = ?", aerolinea, id) > 0;
+                "alianza = ? WHERE id_aerolineas = ?", aerolinea, id) > 0;
     }
 
     @Override
     public boolean delete(int id) {
-        return delete("DELETE FROM aerolineas WHERE id_aerolinea = " + id, id);
+        return delete("DELETE FROM aerolineas WHERE id_aerolineas = " + id, id);
     }
 
     @Override
     public Aerolinea get(int id) {
-        return getOne("SELECT * FROM aerolineas WHERE id_aerolinea = " + id);
+        return getOne("SELECT * FROM aerolineas WHERE id_aerolineas = " + id);
     }
 
     @Override
@@ -58,8 +58,8 @@ public class JdbcAerolineaDao extends AbstractJdbcDao<Aerolinea> implements Aero
 
     @Override
     protected Aerolinea create(ResultSet rs) throws SQLException {
-        return new Aerolinea(rs.getInt("id_aerolinea"),
-                rs.getString("nombre_aerolinea"),
+        return new Aerolinea(rs.getInt("id_aerolineas"),
+                rs.getString("nombre_aerolineas"),
                 //accede al enum...sera malo?
                 Alianza.fromString(rs.getString("alianza")));
     }

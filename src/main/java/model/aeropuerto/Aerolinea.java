@@ -45,4 +45,12 @@ public class Aerolinea {
     this.alianza = alianza;
   }
 
+@Override
+public String toString() {
+	return "Aerolinea [idAerolinea=" + idAerolinea + ", nombreAerolinea=" + nombreAerolinea + ", alianza=" + alianza
+			+ "]";
+}
+
+  
+  
 }

@@ -30,7 +30,7 @@ public class JdbcDaoFactory implements Closeable {
     public JdbcDaoFactory() {
         try {
             Properties properties = new Properties();
-            InputStream inputStream = new FileInputStream("src/main/resources/db/Connection.properties");
+            InputStream inputStream = new FileInputStream("/home/fjgoni/Escritorio/Facultad/Programacion Avanzada/AerolineasUsal/src/main/resources/db/Connection.properties");
             properties.load(inputStream);
             this.connection = DriverManager.getConnection(
                     properties.getProperty("URL"),

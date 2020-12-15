@@ -28,7 +28,7 @@ public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoI
     @Override
     public boolean update(int id, Pasaporte element) {
         return update("UPDATE pasaportes" +
-                " SET id_pasaporte = ?, " +
+                " SET id_pasaportes = ?, " +
                 "nro_pasaporte = ?," +
                 "autoridad_emision = ?," +
                 "fecha_emision = ?," +
@@ -38,12 +38,12 @@ public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoI
 
     @Override
     public boolean delete(int id) {
-        return delete("DELETE FROM pasaportes WHERE id_pasaporte = ?", id);
+        return delete("DELETE FROM pasaportes WHERE id_pasaportes = ?", id);
     }
 
     @Override
     public Pasaporte get(int id) {
-        return getOne("SELECT * FROM pasaportes WHERE id_pasaporte = " + id + " ");
+        return getOne("SELECT * FROM pasaportes WHERE id_pasaportes = " + id + " ");
     }
 
     @Override
@@ -54,7 +54,7 @@ public class JdbcPasaporteDao extends AbstractJdbcDao<Pasaporte> implements DaoI
     @Override
     protected Pasaporte create(ResultSet rs) throws SQLException {
         final int idPais = rs.getInt("id_pais");
-        return new Pasaporte(rs.getInt("id_pasaporte"),
+        return new Pasaporte(rs.getInt("id_pasaportes"),
                 rs.getInt("nro_pasaporte"),
                 rs.getString("autoridad_emision"),
                 rs.getDate("fecha_emision"),

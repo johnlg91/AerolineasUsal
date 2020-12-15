@@ -80,4 +80,12 @@ public class Venta {
   public void setAerolinea(Aerolinea aerolinea) {
     this.aerolinea = aerolinea;
   }
+
+@Override
+public String toString() {
+	return "Venta [idVentas=" + idVentas + ", fecHsVenta=" + fecHsVenta + ", formaPago=" + formaPago + ", cliente="
+			+ cliente + ", vuelo=" + vuelo + ", aerolinea=" + aerolinea + "]";
+}
+  
+  
 }

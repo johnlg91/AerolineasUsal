@@ -3,7 +3,7 @@ package dao.jdbc;
 
 
 
-import org.intellij.lang.annotations.Language;
+//import org.intellij.lang.annotations.Language;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public abstract class AbstractJdbcDao<T> {
     }
 
 
-    protected T getOne(@Language(value = "SQL")String query) {
+    protected T getOne(/*@Language(value = "SQL")*/String query) {
         try (
                 Statement statement = getConnection().createStatement();
                 ResultSet rs = statement.executeQuery(query)

@@ -114,4 +114,13 @@ public class Vuelo {
   public void setAeropuertoLlegada(Aeropuerto aeropuertoLlegada) {
     this.aeropuertoLlegada = aeropuertoLlegada;
   }
+
+@Override
+public String toString() {
+	return "Vuelo [idVuelo=" + idVuelo + ", nroVuelo=" + nroVuelo + ", cantAsientos=" + cantAsientos + ", fecHsSalida="
+			+ fecHsSalida + ", fecHsLlegada=" + fecHsLlegada + ", tiempoVuelo=" + tiempoVuelo + ", aerolinea="
+			+ aerolinea + ", aeropuertoSalida=" + aeropuertoSalida + ", aeropuertoLlegada=" + aeropuertoLlegada + "]";
+}
+  
+  
 }

@@ -20,7 +20,7 @@ import model.cliente.Telefono;
 import model.direccion.Direccion;
 import model.direccion.Pais;
 import model.direccion.Provincia;
-import org.junit.Test;
+
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -50,7 +50,7 @@ public class TestJdbcDaos {
         }
     }
 
-    @Test
+ 
     public void clienteDao() {
         try (JdbcDaoFactory f = new JdbcDaoFactory()) {
             final ProvinciaDao provinciaDao = f.getDao(JdbcProvinciaDao.class);
@@ -88,10 +88,11 @@ public class TestJdbcDaos {
     }
 
 
-//    public static void main(String[] args) {
-//		TestJdbcDaos ts = new TestJdbcDaos();
-//		ts.clienteDao();
-//	}
+    public static void main(String[] args) {
+		TestJdbcDaos ts = new TestJdbcDaos();
+		ts.provinciaDao();
+		
+	}
 
    // @Test
     public void provinciasTxt() {
